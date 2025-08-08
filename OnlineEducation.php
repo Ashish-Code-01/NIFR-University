@@ -21,7 +21,7 @@ if (isset($_POST['submit'])){
     // $q=mysqli_query($conn,$query);
     if(mysqli_query($conn, $query)){
         echo "<script>alert('Data Entered.')</script>";
-        echo '<script>window.location.href = "OnlineEducation.php";</script>';
+        echo '<script>window.location.href = "DetailsOfDepartment.php";</script>';
     } else{
         echo "<script>alert('Woops! There was an error (Contact Admin if it continues).')</script>";
     }

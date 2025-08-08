@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_query($conn, $query)) {
         echo "<script>alert('Data Entered.')</script>";
         // --- FIX: Redirect to the current page to see the changes. ---
-        echo '<script>window.location.href = "' . basename($_SERVER['PHP_SELF']) . '";</script>';
+        echo '<script>window.location.href = "FacultyOutput.php' . basename($_SERVER['PHP_SELF']) . '";</script>';
     } else {
         // For debugging, it can be helpful to see the actual error: echo mysqli_error($conn);
         echo "<script>alert('Woops! There was an error (Contact Admin if it continues).')</script>";
