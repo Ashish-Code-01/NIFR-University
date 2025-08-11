@@ -67,7 +67,7 @@ ON DUPLICATE KEY UPDATE
 
     if (mysqli_query($conn, $query)) {
         echo "<script>alert('Data Entered.')</script>";
-        echo '<script>window.location.href = "EmployerDetails.php";</script>';
+        echo '<script>window.location.href = "Departmental_Governance.php";</script>';
     } else {
         echo "<script>alert('Woops! There was an error (Contact Admin if it continues).')</script>";
     }

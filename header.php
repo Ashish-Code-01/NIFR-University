@@ -83,6 +83,7 @@ $A_YEAR = ($pyear - 1) . '-' . $pyear; // Set A_YEAR to one year less than the c
                 <a href="DetailsOfDepartment.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i></i>Brief Details of the Department </a>
                 <a href="FacultyOutput.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i></i>Faculty Output, Research and Professional Activities Details </a>
                 <a href="NEPInitiatives.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i></i>NEP Initiatives, Teaching, Learning, and Assessment Process</a>
+                <a href="Departmental_Governance.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i></i>Departmental Governance and Practices each should be a separate question under each sr.no</a>
                 <a href="logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i></i>Logout</a>
             </div>
         </div>
