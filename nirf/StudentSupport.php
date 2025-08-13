@@ -3,7 +3,6 @@ include 'config.php';
 require "header.php";
 
 $dept = $_SESSION['dept_id'];
-$A_YEAR = date("Y");
 
 if (isset($_POST['submit'])) {
 
@@ -43,85 +42,58 @@ if (isset($_POST['submit'])) {
     $title = $_POST['mooc_title'];
     $students = $_POST['mooc_students'];
     $credits_transferred = $_POST['mooc_credits'];
-
-    // On Duplicate Key Update logic (assuming unique key on A_YEAR and name)
-    $query = "INSERT INTO `StudentSupport`
-    (`A_YEAR`, `name`, `intake_capacity`, `enrolment`, `jrf_srfs_pdf_ra_others`,
-    `reserved_category_male`, `reserved_category_female`, `scholarship_govt`,
-    `scholarship_univ`, `scholarship_private`, `regional_within_univ_male`,
-    `regional_within_univ_female`, `regional_outside_univ_male`, `regional_outside_univ_female`,
-    `regional_outside_state_male`, `regional_outside_state_female`, `regional_outside_country_male`,
-    `regional_outside_country_female`, `executive_dev_students_male`, `executive_dev_students_female`,
-    `executive_dev_fee_collected`, `internships_ojt`, `final_sem_appeared`, `final_sem_passed`,
-    `placed_or_self_employed`, `qualified_competitive_exams`, `higher_studies_institutions`,
-    `student_research_activities`, `sports_awards_state`, `sports_awards_national`,
-    `sports_awards_international`, `cultural_awards`, `moocs`, `platform`, `title`, `students`, `credits_transferred`)
-    VALUES (
-    '$A_YEAR', '$name', '$intake_capacity', '$enrolment', '$jrf_srfs_pdf_ra_others',
-    '$reserved_category_male', '$reserved_category_female', '$scholarship_govt',
-    '$scholarship_univ', '$scholarship_private', '$regional_within_univ_male',
-    '$regional_within_univ_female', '$regional_outside_univ_male', '$regional_outside_univ_female',
-    '$regional_outside_state_male', '$regional_outside_state_female', '$regional_outside_country_male',
-    '$regional_outside_country_female', '$executive_dev_students_male', '$executive_dev_students_female',
-    '$executive_dev_fee_collected', '$internships_ojt', '$final_sem_appeared', '$final_sem_passed',
-    '$placed_or_self_employed', '$qualified_competitive_exams', '$higher_studies_institutions',
-    '$student_research_activities', '$sports_awards_state', '$sports_awards_national',
-    '$sports_awards_international', '$cultural_awards', '$moocs', '$platform', '$title', '$students', '$credits_transferred'
-    )
-    ON DUPLICATE KEY UPDATE
-        intake_capacity=VALUES(intake_capacity),
-        enrolment=VALUES(enrolment),
-        jrf_srfs_pdf_ra_others=VALUES(jrf_srfs_pdf_ra_others),
-        reserved_category_male=VALUES(reserved_category_male),
-        reserved_category_female=VALUES(reserved_category_female),
-        scholarship_govt=VALUES(scholarship_govt),
-        scholarship_univ=VALUES(scholarship_univ),
-        scholarship_private=VALUES(scholarship_private),
-        regional_within_univ_male=VALUES(regional_within_univ_male),
-        regional_within_univ_female=VALUES(regional_within_univ_female),
-        regional_outside_univ_male=VALUES(regional_outside_univ_male),
-        regional_outside_univ_female=VALUES(regional_outside_univ_female),
-        regional_outside_state_male=VALUES(regional_outside_state_male),
-        regional_outside_state_female=VALUES(regional_outside_state_female),
-        regional_outside_country_male=VALUES(regional_outside_country_male),
-        regional_outside_country_female=VALUES(regional_outside_country_female),
-        executive_dev_students_male=VALUES(executive_dev_students_male),
-        executive_dev_students_female=VALUES(executive_dev_students_female),
-        executive_dev_fee_collected=VALUES(executive_dev_fee_collected),
-        internships_ojt=VALUES(internships_ojt),
-        final_sem_appeared=VALUES(final_sem_appeared),
-        final_sem_passed=VALUES(final_sem_passed),
-        placed_or_self_employed=VALUES(placed_or_self_employed),
-        qualified_competitive_exams=VALUES(qualified_competitive_exams),
-        higher_studies_institutions=VALUES(higher_studies_institutions),
-        student_research_activities=VALUES(student_research_activities),
-        sports_awards_state=VALUES(sports_awards_state),
-        sports_awards_national=VALUES(sports_awards_national),
-        sports_awards_international=VALUES(sports_awards_international),
-        cultural_awards=VALUES(cultural_awards),
-        moocs=VALUES(moocs),
-        platform=VALUES(platform),
-        title=VALUES(title),
-        students=VALUES(students),
-        credits_transferred=VALUES(credits_transferred)
-    ";
-
-    if (mysqli_query($conn, $query)) {
-        echo "<script>alert('Data Entered.')</script>";
-        echo '<script>window.location.href = "EmployerDetails.php";</script>';
-    } else {
-        echo "<script>alert('Woops! There was an error (Contact Admin if it continues).')</script>";
-    }
 }
 
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
-    if ($action == 'delete') {
-        $id = $_GET['ID'];
-        $sql = mysqli_query($conn, "delete from employers_details where ID = '$id'");
-        echo '<script>window.location.href = "EmployerDetails.php";</script>';
-    }
+
+$query = "INSERT INTO `StudentSupport`
+(`A_YEAR`, `name`, `intake_capacity`, `enrolment`, `jrf_srfs_pdf_ra_others`,
+`reserved_category_male`, `reserved_category_female`, `scholarship_govt`,
+`scholarship_univ`, `scholarship_private`, `regional_within_univ_male`,
+`regional_within_univ_female`, `regional_outside_univ_male`, `regional_outside_univ_female`,
+`regional_outside_state_male`, `regional_outside_state_female`, `regional_outside_country_male`,
+`regional_outside_country_female`, `executive_dev_students_male`, `executive_dev_students_female`,
+`executive_dev_fee_collected`, `internships_ojt`, `final_sem_appeared`, `final_sem_passed`,
+`placed_or_self_employed`, `qualified_competitive_exams`, `higher_studies_institutions`,
+`student_research_activities`, `sports_awards_state`, `sports_awards_national`,
+`sports_awards_international`, `cultural_awards`, `moocs`, `platform`, `title`, `students`, `credits_transferred`)
+VALUES (
+'$A_YEAR', '$name', '$intake_capacity', '$enrolment', '$jrf_srfs_pdf_ra_others',
+'$reserved_category_male', '$reserved_category_female', '$scholarship_govt',
+'$scholarship_univ', '$scholarship_private', '$regional_within_univ_male',
+'$regional_within_univ_female', '$regional_outside_univ_male', '$regional_outside_univ_female',
+'$regional_outside_state_male', '$regional_outside_state_female', '$regional_outside_country_male',
+'$regional_outside_country_female', '$executive_dev_students_male', '$executive_dev_students_female',
+'$executive_dev_fee_collected', '$internships_ojt', '$final_sem_appeared', '$final_sem_passed',
+'$placed_or_self_employed', '$qualified_competitive_exams', '$higher_studies_institutions',
+'$student_research_activities', '$sports_awards_state', '$sports_awards_national',
+'$sports_awards_international', '$cultural_awards', '$moocs', '$platform', '$title', '$students', '$credits_transferred'
+)
+ON DUPLICATE KEY UPDATE
+`intake_capacity` = VALUES(`intake_capacity`),
+`enrolment` = VALUES(`enrolment`),
+`jrf_srfs_pdf_ra_others` = VALUES(`jrf_srfs_pdf_ra_others`),
+`reserved_category_male` = VALUES(`reserved_category_male`),
+`reserved_category_female` = VALUES(`reserved_category_female`),
+`scholarship_univ` = VALUES(`scholarship_univ`),
+`scholarship_govt` = VALUES(`scholarship_govt`),
+`scholarship_private` = VALUES(`scholarship_private`),
+`regional_within_univ_male` = VALUES(`regional_within_univ_male`),
+`regional_within_univ_female` = VALUES(`regional_within_univ_female`),
+`regional_outside_univ_male` = VALUES(`regional_outside_univ_male`),
+`regional_outside_univ_female` = VALUES(`regional_outside_univ_female`),
+`regional_outside_state_male` = VALUES(`regional_outside_state_male`),
+`regional_outside_state_female` = VALUES(`regional_outside_state_female`),
+`scholarship_univ` = VALUES(`scholarship_univ`),
+`scholarship_private` = VALUES(`scholarship_private`)";
+
+if (mysqli_query($conn, $query)) {
+    echo "<script>alert('Data Entered.')</script>";
+    echo '<script>window.location.href = "";</script>';
+} else {
+    echo "<script>alert('Woops! There was an error (Contact Admin if it continues).')</script>";
 }
+
+
 ?>
 
 
@@ -235,7 +207,7 @@ if (isset($_GET['action'])) {
     <div class="col">
         <div class="overflow-auto">
             <table class="table table-bordered table-striped bg-white rounded shadow-sm">
-                <thead class="table-light">
+                <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Program Name</th>
