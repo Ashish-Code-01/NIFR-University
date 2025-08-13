@@ -1,29 +1,14 @@
 <?php
-// --- CONFIGURATION AND INITIALIZATION ---
 
-// Include your database configuration and header file.
-// Ensure config.php establishes a mysqli connection named $conn.
 include 'config.php';
 require "header.php";
 
-// --- HELPER FUNCTIONS ---
-
-/**
- * A wrapper for htmlspecialchars to prevent XSS attacks.
- * @param string|null $s The string to escape.
- * @return string The escaped string.
- */
 function h(?string $s): string
 {
     return htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8');
 }
 
-/**
- * Flattens an array into a comma-separated string for database storage.
- * Handles cases where the input might not be an array.
- * @param mixed $data The array or value from $_POST.
- * @return string A comma-separated string.
- */
+
 function flat(mixed $data): string
 {
     if (is_array($data)) {
@@ -32,10 +17,7 @@ function flat(mixed $data): string
     return (string) $data;
 }
 
-// --- SCRIPT LOGIC ---
-
-// Initialize variables
-$formData = []; // Holds all data for populating the form fields.
+$formData = [];
 $errors = [];   // Stores validation or database errors.
 $successMessage = ''; // Stores success message for display.
 $editMode = false; // Flag to check if we are editing or creating.
@@ -62,7 +44,7 @@ if ($editMode) {
         if (!$formData) {
             // Using JS alerts is not ideal, but matches the original code's style.
             // A better approach is to show a message on the page.
-            echo "<script>alert('Error: Record not found.'); window.location.href='your_list_page.php';</script>";
+            echo "<script>alert('Error: Record not found.'); window.location.href='StudentSupport.php';</script>";
             exit;
         }
     } else {
@@ -206,15 +188,20 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
                             foreach ($inclusive_options as $opt):
                                 $id = 'inclusive_' . str_replace([' ', '/'], '_', $opt);
                                 $isChecked = in_array($opt, $inclusivePracticesSelected);
-                            ?>
+                                ?>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" name="inclusive_practices[]" value="<?php echo h($opt); ?>" id="<?php echo h($id); ?>" <?php echo $isChecked ? 'checked' : ''; ?>>
-                                    <label class="form-check-label" for="<?php echo h($id); ?>"><?php echo h($opt); ?></label>
+                                    <input class="form-check-input" type="checkbox" name="inclusive_practices[]"
+                                        value="<?php echo h($opt); ?>" id="<?php echo h($id); ?>" <?php echo $isChecked ? 'checked' : ''; ?>>
+                                    <label class="form-check-label"
+                                        for="<?php echo h($id); ?>"><?php echo h($opt); ?></label>
                                 </div>
                             <?php endforeach; ?>
                             <div class="mb-3 mt-3">
-                                <label for="inclusive_practices_details" class="form-label">Details of activities (if any):</label>
-                                <textarea class="form-control" id="inclusive_practices_details" name="inclusive_practices_details" rows="3"><?php echo h($formData['inclusive_practices_details'] ?? ''); ?></textarea>
+                                <label for="inclusive_practices_details" class="form-label">Details of activities (if
+                                    any):</label>
+                                <textarea class="form-control" id="inclusive_practices_details"
+                                    name="inclusive_practices_details"
+                                    rows="3"><?php echo h($formData['inclusive_practices_details'] ?? ''); ?></textarea>
                             </div>
                         </fieldset>
 
@@ -243,15 +230,20 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
                             foreach ($green_options as $opt):
                                 $id = 'green_' . str_replace([' ', '/'], '_', $opt);
                                 $isChecked = in_array($opt, $greenPracticesSelected);
-                            ?>
+                                ?>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" name="green_practices[]" value="<?php echo h($opt); ?>" id="<?php echo h($id); ?>" <?php echo $isChecked ? 'checked' : ''; ?>>
-                                    <label class="form-check-label" for="<?php echo h($id); ?>"><?php echo h($opt); ?></label>
+                                    <input class="form-check-input" type="checkbox" name="green_practices[]"
+                                        value="<?php echo h($opt); ?>" id="<?php echo h($id); ?>" <?php echo $isChecked ? 'checked' : ''; ?>>
+                                    <label class="form-check-label"
+                                        for="<?php echo h($id); ?>"><?php echo h($opt); ?></label>
                                 </div>
                             <?php endforeach; ?>
                             <div class="mb-3 mt-3">
-                                <label for="green_practices_details" class="form-label">Details of activities (if any):</label>
-                                <textarea class="form-control" id="green_practices_details" name="green_practices_details" rows="3"><?php echo h($formData['green_practices_details'] ?? ''); ?></textarea>
+                                <label for="green_practices_details" class="form-label">Details of activities (if
+                                    any):</label>
+                                <textarea class="form-control" id="green_practices_details"
+                                    name="green_practices_details"
+                                    rows="3"><?php echo h($formData['green_practices_details'] ?? ''); ?></textarea>
                             </div>
                         </fieldset>
 
@@ -259,48 +251,77 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
                         <fieldset class="mb-4 p-3 border rounded">
                             <legend class="w-auto px-2">3–10: Numeric / Short inputs</legend>
                             <div class="mb-3">
-                                <label for="teachers_in_admin" class="form-label">3. Number of teachers involved in University and Government Administrative authorities/bodies:</label>
-                                <input type="number" class="form-control" id="teachers_in_admin" name="teachers_in_admin" value="<?php echo h($formData['teachers_in_admin'] ?? ''); ?>">
+                                <label for="teachers_in_admin" class="form-label">3. Number of teachers involved in
+                                    University and Government Administrative authorities/bodies:</label>
+                                <input type="number" class="form-control" id="teachers_in_admin"
+                                    name="teachers_in_admin"
+                                    value="<?php echo h($formData['teachers_in_admin'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="awards_extension" class="form-label">4. Number of awards and recognitions received for extension activities from Government / recognized bodies during the last year:</label>
-                                <input type="number" class="form-control" id="awards_extension" name="awards_extension" value="<?php echo h($formData['awards_extension'] ?? ''); ?>">
+                                <label for="awards_extension" class="form-label">4. Number of awards and recognitions
+                                    received for extension activities from Government / recognized bodies during the
+                                    last year:</label>
+                                <input type="number" class="form-control" id="awards_extension" name="awards_extension"
+                                    value="<?php echo h($formData['awards_extension'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="heads_expenditure" class="form-label">5. Budgetary Allocation of the Department and Expenditure (Heads of expenditure with allocation and utilization):</label>
-                                <textarea class="form-control" id="heads_expenditure" name="heads_expenditure" rows="3"><?php echo h($formData['heads_expenditure'] ?? ''); ?></textarea>
+                                <label for="heads_expenditure" class="form-label">5. Budgetary Allocation of the
+                                    Department and Expenditure (Heads of expenditure with allocation and
+                                    utilization):</label>
+                                <textarea class="form-control" id="heads_expenditure" name="heads_expenditure"
+                                    rows="3"><?php echo h($formData['heads_expenditure'] ?? ''); ?></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="alumni_contribution" class="form-label">6. Alumni contribution/ Funding Support during the previous year (INR):</label>
-                                <input type="number" step="0.01" class="form-control" id="alumni_contribution" name="alumni_contribution" value="<?php echo h($formData['alumni_contribution'] ?? ''); ?>">
+                                <label for="alumni_contribution" class="form-label">6. Alumni contribution/ Funding
+                                    Support during the previous year (INR):</label>
+                                <input type="number" step="0.01" class="form-control" id="alumni_contribution"
+                                    name="alumni_contribution"
+                                    value="<?php echo h($formData['alumni_contribution'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="alumni_details" class="form-label">Alumni Details and donation (names / notes):</label>
-                                <input type="text" class="form-control" id="alumni_details" name="alumni_details" value="<?php echo h($formData['alumni_details'] ?? ''); ?>">
+                                <label for="alumni_details" class="form-label">Alumni Details and donation (names /
+                                    notes):</label>
+                                <input type="text" class="form-control" id="alumni_details" name="alumni_details"
+                                    value="<?php echo h($formData['alumni_details'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="csr_details" class="form-label">7. CSR and Philanthropic Funding support to the Department during the previous year (Company name(s) and amount):</label>
-                                <textarea class="form-control" id="csr_details" name="csr_details" rows="2"><?php echo h($formData['csr_details'] ?? ''); ?></textarea>
+                                <label for="csr_details" class="form-label">7. CSR and Philanthropic Funding support to
+                                    the Department during the previous year (Company name(s) and amount):</label>
+                                <textarea class="form-control" id="csr_details" name="csr_details"
+                                    rows="2"><?php echo h($formData['csr_details'] ?? ''); ?></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="infrastructure_details" class="form-label">8. Efforts taken for Strengthening/ Augmentation of Departmental infra, IT, Library, Lab (previous year vs last 5 years):</label>
-                                <textarea class="form-control" id="infrastructure_details" name="infrastructure_details" rows="3"><?php echo h($formData['infrastructure_details'] ?? ''); ?></textarea>
+                                <label for="infrastructure_details" class="form-label">8. Efforts taken for
+                                    Strengthening/ Augmentation of Departmental infra, IT, Library, Lab (previous year
+                                    vs last 5 years):</label>
+                                <textarea class="form-control" id="infrastructure_details" name="infrastructure_details"
+                                    rows="3"><?php echo h($formData['infrastructure_details'] ?? ''); ?></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="peer_perception_rate" class="form-label">9. Perception from Industry/Employers and Academia (PEER) during the last year (rate or notes):</label>
-                                <input type="text" class="form-control" id="peer_perception_rate" name="peer_perception_rate" value="<?php echo h($formData['peer_perception_rate'] ?? ''); ?>">
+                                <label for="peer_perception_rate" class="form-label">9. Perception from
+                                    Industry/Employers and Academia (PEER) during the last year (rate or notes):</label>
+                                <input type="text" class="form-control" id="peer_perception_rate"
+                                    name="peer_perception_rate"
+                                    value="<?php echo h($formData['peer_perception_rate'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="peer_perception_notes" class="form-label">Notes on Employer / Academic peer perception:</label>
-                                <textarea class="form-control" id="peer_perception_notes" name="peer_perception_notes" rows="2"><?php echo h($formData['peer_perception_notes'] ?? ''); ?></textarea>
+                                <label for="peer_perception_notes" class="form-label">Notes on Employer / Academic peer
+                                    perception:</label>
+                                <textarea class="form-control" id="peer_perception_notes" name="peer_perception_notes"
+                                    rows="2"><?php echo h($formData['peer_perception_notes'] ?? ''); ?></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="student_feedback_rate" class="form-label">10. Students' Feedback about Teachers and Department (rate):</label>
-                                <input type="text" class="form-control" id="student_feedback_rate" name="student_feedback_rate" value="<?php echo h($formData['student_feedback_rate'] ?? ''); ?>">
+                                <label for="student_feedback_rate" class="form-label">10. Students' Feedback about
+                                    Teachers and Department (rate):</label>
+                                <input type="text" class="form-control" id="student_feedback_rate"
+                                    name="student_feedback_rate"
+                                    value="<?php echo h($formData['student_feedback_rate'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="student_feedback_notes" class="form-label">Notes on student feedback:</label>
-                                <textarea class="form-control" id="student_feedback_notes" name="student_feedback_notes" rows="2"><?php echo h($formData['student_feedback_notes'] ?? ''); ?></textarea>
+                                <label for="student_feedback_notes" class="form-label">Notes on student
+                                    feedback:</label>
+                                <textarea class="form-control" id="student_feedback_notes" name="student_feedback_notes"
+                                    rows="2"><?php echo h($formData['student_feedback_notes'] ?? ''); ?></textarea>
                             </div>
                         </fieldset>
 
@@ -308,12 +329,16 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
                         <fieldset class="mb-4 p-3 border rounded">
                             <legend class="w-auto px-2">11–12: Best Practice / Leadership (100 words each)</legend>
                             <div class="mb-3">
-                                <label for="best_practice" class="form-label">11. Best Practice/ Unique Activity of the Department (Max. 100 Words):</label>
-                                <textarea class="form-control" id="best_practice" name="best_practice" rows="4" maxlength="700"><?php echo h($formData['best_practice'] ?? ''); ?></textarea>
+                                <label for="best_practice" class="form-label">11. Best Practice/ Unique Activity of the
+                                    Department (Max. 100 Words):</label>
+                                <textarea class="form-control" id="best_practice" name="best_practice" rows="4"
+                                    maxlength="700"><?php echo h($formData['best_practice'] ?? ''); ?></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="leadership_sync" class="form-label">12. Details of initiatives to ensure synchronization, leadership, teamwork (Max 100 words):</label>
-                                <textarea class="form-control" id="leadership_sync" name="leadership_sync" rows="4" maxlength="700"><?php echo h($formData['leadership_sync'] ?? ''); ?></textarea>
+                                <label for="leadership_sync" class="form-label">12. Details of initiatives to ensure
+                                    synchronization, leadership, teamwork (Max 100 words):</label>
+                                <textarea class="form-control" id="leadership_sync" name="leadership_sync" rows="4"
+                                    maxlength="700"><?php echo h($formData['leadership_sync'] ?? ''); ?></textarea>
                             </div>
                         </fieldset>
 
@@ -321,49 +346,118 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
                         <fieldset class="mb-4 p-3 border rounded">
                             <legend class="w-auto px-2">13–21: ISR and Sponsors</legend>
                             <div class="mb-3">
-                                <label for="isr_total" class="form-label">13. Total number of ISR initiatives the institution has participated:</label>
-                                <input type="number" class="form-control" id="isr_total" name="isr_total" value="<?php echo h($formData['isr_total'] ?? ''); ?>">
+                                <label for="isr_total" class="form-label">13. Total number of ISR initiatives the
+                                    institution has participated:</label>
+                                <input type="number" class="form-control" id="isr_total" name="isr_total"
+                                    value="<?php echo h($formData['isr_total'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="isr_budget_percent" class="form-label">14. % of the budget allocated for ISR initiatives out of the total annual budget:</label>
-                                <input type="number" step="0.01" class="form-control" id="isr_budget_percent" name="isr_budget_percent" value="<?php echo h($formData['isr_budget_percent'] ?? ''); ?>">
+                                <label for="isr_budget_percent" class="form-label">14. % of the budget allocated for ISR
+                                    initiatives out of the total annual budget:</label>
+                                <input type="number" step="0.01" class="form-control" id="isr_budget_percent"
+                                    name="isr_budget_percent"
+                                    value="<?php echo h($formData['isr_budget_percent'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="isr_students_percent" class="form-label">15. % of students participating in ISR initiatives:</label>
-                                <input type="number" step="0.01" class="form-control" id="isr_students_percent" name="isr_students_percent" value="<?php echo h($formData['isr_students_percent'] ?? ''); ?>">
+                                <label for="isr_students_percent" class="form-label">15. % of students participating in
+                                    ISR initiatives:</label>
+                                <input type="number" step="0.01" class="form-control" id="isr_students_percent"
+                                    name="isr_students_percent"
+                                    value="<?php echo h($formData['isr_students_percent'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="isr_faculty_percent" class="form-label">16. % of faculty participating in ISR initiatives:</label>
-                                <input type="number" step="0.01" class="form-control" id="isr_faculty_percent" name="isr_faculty_percent" value="<?php echo h($formData['isr_faculty_percent'] ?? ''); ?>">
+                                <label for="isr_faculty_percent" class="form-label">16. % of faculty participating in
+                                    ISR initiatives:</label>
+                                <input type="number" step="0.01" class="form-control" id="isr_faculty_percent"
+                                    name="isr_faculty_percent"
+                                    value="<?php echo h($formData['isr_faculty_percent'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="sponsors_total" class="form-label">17. Total number of sponsors received:</label>
-                                <input type="number" class="form-control" id="sponsors_total" name="sponsors_total" value="<?php echo h($formData['sponsors_total'] ?? ''); ?>">
+                                <label for="sponsors_total" class="form-label">17. Total number of sponsors
+                                    received:</label>
+                                <input type="number" class="form-control" id="sponsors_total" name="sponsors_total"
+                                    value="<?php echo h($formData['sponsors_total'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="sponsors_amount" class="form-label">18. Total sponsor amount (in INR):</label>
-                                <input type="number" step="0.01" class="form-control" id="sponsors_amount" name="sponsors_amount" value="<?php echo h($formData['sponsors_amount'] ?? ''); ?>">
+                                <label for="sponsors_amount" class="form-label">18. Total sponsor amount (in
+                                    INR):</label>
+                                <input type="number" step="0.01" class="form-control" id="sponsors_amount"
+                                    name="sponsors_amount" value="<?php echo h($formData['sponsors_amount'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="isr_volunteer_hours" class="form-label">19. Estimated total volunteer hours contributed by students and faculty toward ISR initiative(s):</label>
-                                <input type="number" class="form-control" id="isr_volunteer_hours" name="isr_volunteer_hours" value="<?php echo h($formData['isr_volunteer_hours'] ?? ''); ?>">
+                                <label for="isr_volunteer_hours" class="form-label">19. Estimated total volunteer hours
+                                    contributed by students and faculty toward ISR initiative(s):</label>
+                                <input type="number" class="form-control" id="isr_volunteer_hours"
+                                    name="isr_volunteer_hours"
+                                    value="<?php echo h($formData['isr_volunteer_hours'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="isr_active_partnerships" class="form-label">20. Number of active industry or academic partnerships contributing to ISR initiatives:</label>
-                                <input type="number" class="form-control" id="isr_active_partnerships" name="isr_active_partnerships" value="<?php echo h($formData['isr_active_partnerships'] ?? ''); ?>">
+                                <label for="isr_active_partnerships" class="form-label">20. Number of active industry or
+                                    academic partnerships contributing to ISR initiatives:</label>
+                                <input type="number" class="form-control" id="isr_active_partnerships"
+                                    name="isr_active_partnerships"
+                                    value="<?php echo h($formData['isr_active_partnerships'] ?? ''); ?>">
                             </div>
                             <div class="mb-3">
-                                <label for="isr_partners_notes" class="form-label">21. Briefly name key partners or describe the nature of collaborations— Max 30 words:</label>
-                                <input type="text" class="form-control" id="isr_partners_notes" name="isr_partners_notes" value="<?php echo h($formData['isr_partners_notes'] ?? ''); ?>">
+                                <label for="isr_partners_notes" class="form-label">21. Briefly name key partners or
+                                    describe the nature of collaborations— Max 30 words:</label>
+                                <input type="text" class="form-control" id="isr_partners_notes"
+                                    name="isr_partners_notes"
+                                    value="<?php echo h($formData['isr_partners_notes'] ?? ''); ?>">
                             </div>
                         </fieldset>
 
                         <button type="submit" class="btn btn-success mt-3">
-                            <i class="fas fa-save"></i> <?php echo $editMode ? 'Update Record' : 'Submit Record'; ?>
+                            <?php echo $editMode ? 'Update' : 'Submit Details'; ?>
+
                         </button>
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Show Entered Data -->
+<div class="row my-5">
+    <h3 class="fs-4 mb-3 text-center" id="msg"><b>Departmental Governance Data Entered</b></h3>
+    <div class="col">
+        <div class="overflow-auto">
+            <table class="table table-bordered table-striped bg-white rounded shadow-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Inclusive Practices</th>
+                        <th scope="col">Green Practices</th>
+                        <th scope="col">Teachers in Admin</th>
+                        <th scope="col">Awards Extension</th>
+                        <th scope="col">Alumni Contribution</th>
+                        <th scope="col">ISR Initiatives</th>
+                        <th scope="col">Sponsors</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $Record = mysqli_query($conn, "SELECT * FROM department_data");
+                    while ($row = mysqli_fetch_array($Record)) {
+                        echo "<tr>";
+                        echo "<td>{$row['id']}</td>";
+                        echo "<td>" . htmlspecialchars($row['inclusive_practices']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['green_practices']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['teachers_in_admin']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['awards_extension']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['alumni_contribution']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['isr_total']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['sponsors_total']) . "</td>";
+                        echo "<td><a class='btn btn-sm btn-warning' href='Departmental_Governance.php?id={$row['id']}'>Edit</a></td>";
+                        echo "<td><a class='btn btn-sm btn-danger' href='Departmental_Governance.php?action=delete&id={$row['id']}' onclick=\"return confirm('Delete this record?');\">Delete</a></td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

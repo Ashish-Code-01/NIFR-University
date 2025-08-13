@@ -364,11 +364,81 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                 </fieldset>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Submit Details</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                 </div>
             </form>
         </div>
 
+        <!-- Show Entered Data -->
+        <div class="row my-5">
+            <h3 class="fs-4 mb-3 text-center" id="msg"><b>Faculty Output Data Entered</b></h3>
+            <div class="col">
+                <div class="overflow-auto">
+                    <table class="table table-bordered table-striped bg-white rounded shadow-sm">
+                        <thead class="table-light font-weight-bold">
+                            <tr>
+                                <th scope="col">Faculty PhD (Permanent)</th>
+                                <th scope="col">Faculty PhD (Ad-hoc)</th>
+                                <th scope="col">PhDs Awarded</th>
+                                <th scope="col">Awards/Fellowships</th>
+                                <th scope="col">Recognitions</th>
+                                <th scope="col">Infra Funding (Lakhs)</th>
+                                <th scope="col">Startups Registered</th>
+                                <th scope="col">Startups Incubated</th>
+                                <th scope="col">Patents Filed</th>
+                                <th scope="col">Patents Published</th>
+                                <th scope="col">Patents Granted</th>
+                                <th scope="col">Copyrights Granted</th>
+                                <th scope="col">Designs Granted</th>
+                                <th scope="col">ToT Count</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $result = mysqli_query($conn, "SELECT * FROM faculty_output");
+                            while ($row = mysqli_fetch_array($result)) {
+                                echo "<tr>";
+                                echo "<td>{$row['permanent_faculty_phd']}</td>";
+                                echo "<td>{$row['adhoc_faculty_phd']}</td>";
+                                echo "<td>{$row['phd_awarded_count']}</td>";
+                                echo "<td>";
+                                $awards = json_decode($row['awards'], true);
+                                if ($awards && is_array($awards)) {
+                                    foreach ($awards as $award) {
+                                        echo htmlspecialchars($award) . "<br>";
+                                    }
+                                }
+                                echo "</td>";
+                                echo "<td>";
+                                $recognitions = json_decode($row['recognitions'], true);
+                                if ($recognitions && is_array($recognitions)) {
+                                    foreach ($recognitions as $rec) {
+                                        echo htmlspecialchars($rec) . "<br>";
+                                    }
+                                }
+                                echo "</td>";
+                                echo "<td>{$row['infra_funding']}</td>";
+                                echo "<td>{$row['startups_registered']}</td>";
+                                echo "<td>{$row['startups_incubated']}</td>";
+                                echo "<td>{$row['patents_filed']}</td>";
+                                echo "<td>{$row['patents_published']}</td>";
+                                echo "<td>{$row['patents_granted']}</td>";
+                                echo "<td>{$row['copyrights_granted']}</td>";
+                                echo "<td>{$row['designs_granted']}</td>";
+                                echo "<td>{$row['tot_count']}</td>";
+                                echo "<td>
+                            <a class='btn btn-sm btn-warning' href='FacultyOutput.php?action=edit&ID={$row['id']}'>Edit</a>
+                            <a class='btn btn-sm btn-danger' href='FacultyOutput.php?action=delete&ID={$row['id']}' onclick=\"return confirm('Delete this record?');\">Delete</a>
+                        </td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>

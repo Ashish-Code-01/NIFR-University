@@ -221,13 +221,15 @@ if (isset($_GET['action'])) {
                         <th scope="col">Non-teaching Employee Class II</th>
                         <th scope="col">Non-teaching Employee Class II</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $Record = mysqli_query($conn, "SELECT * FROM employers_details WHERE DEPT_ID = $dept");
                     while ($row = mysqli_fetch_array($Record)) {
-                        ?>
+                    ?>
                         <tr>
                             <td><?php echo $row['department_name'] ?></td>
                             <td><?php echo $row['year_of_establishment'] ?></td>
@@ -253,7 +255,7 @@ if (isset($_GET['action'])) {
                             <td><a class="dbutton"
                                     href="EmployerDetails.php?action=delete&ID=<?php echo $row['ID'] ?>">Delete</a></td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>
