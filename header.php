@@ -85,6 +85,7 @@ $A_YEAR = ($pyear - 1) . '-' . $pyear; // Set A_YEAR to one year less than the c
                 <a href="NEPInitiatives.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i></i>NEP Initiatives, Teaching, Learning, and Assessment Process</a>
                 <a href="Departmental_Governance.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i></i>Departmental Governance and Practices</a>
                 <a href="StudentSupport.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i></i>Student Support, Achievements and Progression</a>
+                <a href="ConferencesWorkshops.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i></i>Conferences, Workshops, and Collaborations</a>
                 <a href="logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i></i>Logout</a>
             </div>
         </div>
