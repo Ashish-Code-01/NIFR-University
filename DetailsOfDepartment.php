@@ -25,6 +25,7 @@ if (isset($_POST['submit'])) {
     $class_1 = mysqli_real_escape_string($conn, $_POST['class_1']);
     $class_2 = mysqli_real_escape_string($conn, $_POST['class_2']);
     $class_3 = mysqli_real_escape_string($conn, $_POST['class_3']);
+    $class_3 = mysqli_real_escape_string($conn, $_POST['class_4']);
     $type = mysqli_real_escape_string($conn, $_POST['type']);
 
 
@@ -32,12 +33,12 @@ if (isset($_POST['submit'])) {
         `IQAC_COORDINATOR_NAME`, `IQAC_COORDINATOR_EMAIL`, `IQAC_COORDINATOR_MOBILE`, 
         `SANCTIONED_TEACHING_FACULTY`, `PERMANENT_PROFESSORS`, `PERMANENT_ASSOCIATE_PROFESSORS`, 
         `PERMANENT_ASSISTANT_PROFESSORS`, `CONTRACT_TEACHERS`, `PROGRAMMES_OFFERED`, 
-        `EXECUTIVE_DEVELOPMENT_PROGRAMS`, `AREAS_OF_RESEARCH`,`CLASS_1`,`CLASS_2`,`ClASS_3`,`TYPE`
+        `EXECUTIVE_DEVELOPMENT_PROGRAMS`, `AREAS_OF_RESEARCH`,`CLASS_1`,`CLASS_2`,`ClASS_3`,`CLASS_4`,`TYPE`
     ) VALUES ( '$department_name', '$year_of_establishment', '$hod_name', '$hod_email', '$hod_mobile',
         '$iqac_coordinator_name', '$iqac_coordinator_email', '$iqac_coordinator_mobile',
         '$sanctioned_teaching_faculty', '$permanent_professors', '$permanent_associate_professors',
         '$permanent_assistant_professors', '$contract_teachers', '$programmes_offered',
-        '$executive_development_programs', '$areas_of_research', '$class_1', '$class_2', '$class_3','$type'
+        '$executive_development_programs', '$areas_of_research', '$class_1', '$class_2', '$class_3','$class_4','$type'
     )
     ON DUPLICATE KEY UPDATE
         DEPARTMENT_NAME = VALUES(DEPARTMENT_NAME), YEAR_OF_ESTABLISHMENT = VALUES(YEAR_OF_ESTABLISHMENT),
@@ -47,7 +48,7 @@ if (isset($_POST['submit'])) {
         PERMANENT_PROFESSORS = VALUES(PERMANENT_PROFESSORS), PERMANENT_ASSOCIATE_PROFESSORS = VALUES(PERMANENT_ASSOCIATE_PROFESSORS),
         PERMANENT_ASSISTANT_PROFESSORS = VALUES(PERMANENT_ASSISTANT_PROFESSORS), CONTRACT_TEACHERS = VALUES(CONTRACT_TEACHERS),
         PROGRAMMES_OFFERED = VALUES(PROGRAMMES_OFFERED), EXECUTIVE_DEVELOPMENT_PROGRAMS = VALUES(EXECUTIVE_DEVELOPMENT_PROGRAMS),
-        AREAS_OF_RESEARCH = VALUES(AREAS_OF_RESEARCH), CLASS_1 = VALUES(CLASS_1),CLASS_2 = VALUES(CLASS_2),CLASS_3 = VALUES(CLASS_3)";
+        AREAS_OF_RESEARCH = VALUES(AREAS_OF_RESEARCH), CLASS_1 = VALUES(CLASS_1),CLASS_2 = VALUES(CLASS_2),CLASS_3 = VALUES(CLASS_3) , TYPE = VALUES(TYPE), CLASS_4 = VALUES(CLASS_4)";
 
     if (mysqli_query($conn, $query)) {
         echo "<script>alert('Data Entered.')</script>";
@@ -175,6 +176,10 @@ if (isset($_GET['action'])) {
                 <div>
                     <label for="form-label" style="font-weight:normal;">Class III</label>
                     <input type="number" id="Non_teaching_Employee_Class_3" name="class_3" min="0" value="0" required>
+                </div>
+                <div>
+                    <label for="form-label" style="font-weight:normal;">Class IV</label>
+                    <input type="number" id="Non_teaching_Employee_Class_3" name="class_4" min="0" value="0" required>
                 </div>
             </div>
         </div>

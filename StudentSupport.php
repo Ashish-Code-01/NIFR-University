@@ -139,7 +139,6 @@ if (isset($_GET['action'])) {
         <hr class="my-4">
 
         <div class="card mb-4 p-3">
-            <h4 class="mb-3">Conferences, Workshops, STTP and Seminars</h4>
             <div class="row g-3">
                 <div class="col-md-4"><label class="fw-bold" style="margin-left:0;">Industry-Acad. Innovative
                         practices</label><input type="number" class="form-control"

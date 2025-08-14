@@ -171,7 +171,7 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
                     <form method="post" action="<?php echo h($_SERVER['REQUEST_URI']); ?>">
                         <!-- Fieldset 1: Inclusive Practices -->
                         <fieldset class="mb-4 p-3 border rounded">
-                            <legend class="w-auto px-2">1. Inclusive Practices and Support Initiatives</legend>
+                            <legend class=" px-2">1. Inclusive Practices and Support Initiatives</legend>
                             <?php
                             $inclusive_options = [
                                 'Support Mechanism for Socially Disadvantaged Students and Employees',
@@ -207,7 +207,7 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
 
                         <!-- Fieldset 2: Green Practices -->
                         <fieldset class="mb-4 p-3 border rounded">
-                            <legend class="w-auto px-2">2. Green / Sustainability Practices</legend>
+                            <legend class="px-2">2. Green / Sustainability Practices</legend>
                             <?php
                             $green_options = [
                                 'Solid waste management including facilities for Separation of Dry and Wet Waste',
@@ -249,7 +249,7 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
 
                         <!-- Fieldset 3: Numeric Inputs -->
                         <fieldset class="mb-4 p-3 border rounded">
-                            <legend class="w-auto px-2">3–10: Numeric / Short inputs</legend>
+                            <legend class=" px-2">3–10: Numeric / Short inputs</legend>
                             <div class="mb-3">
                                 <label for="teachers_in_admin" class="form-label">3. Number of teachers involved in
                                     University and Government Administrative authorities/bodies:</label>
@@ -327,7 +327,7 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
 
                         <!-- Fieldset 4: Best Practice -->
                         <fieldset class="mb-4 p-3 border rounded">
-                            <legend class="w-auto px-2">11–12: Best Practice / Leadership (100 words each)</legend>
+                            <legend class=" px-2">11–12: Best Practice / Leadership (100 words each)</legend>
                             <div class="mb-3">
                                 <label for="best_practice" class="form-label">11. Best Practice/ Unique Activity of the
                                     Department (Max. 100 Words):</label>
@@ -344,7 +344,7 @@ $greenPracticesSelected = isset($formData['green_practices']) ? explode(', ', $f
 
                         <!-- Fieldset 5: ISR and Sponsors -->
                         <fieldset class="mb-4 p-3 border rounded">
-                            <legend class="w-auto px-2">13–21: ISR and Sponsors</legend>
+                            <legend class=" px-2">13–21: ISR and Sponsors</legend>
                             <div class="mb-3">
                                 <label for="isr_total" class="form-label">13. Total number of ISR initiatives the
                                     institution has participated:</label>

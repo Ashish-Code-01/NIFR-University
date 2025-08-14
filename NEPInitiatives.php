@@ -100,7 +100,7 @@ ON DUPLICATE KEY UPDATE
                     <form method="post">
                         <!-- NEP Initiatives -->
                         <div class="mb-4">
-                            <label class="form-label fw-bold mb-2 fs-5">1. NEP Initiatives (Max 30 marks)</label>
+                            <label class="form-label fw-bold mb-2 fs-5">1. NEP Initiatives and Professional Activities adopted by the department (Max. marks 30)</label>
                             <div class="row">
                                 <?php
                                 $nep_items = [

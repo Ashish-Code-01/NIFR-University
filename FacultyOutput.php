@@ -1,7 +1,6 @@
 <?php
 include 'config.php';
 require "header.php";
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Simple sanitization for scalar fields
@@ -167,9 +166,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                             <input type="number" class="form-control" id="permanent_faculty_phd"
                                 name="permanent_faculty_phd" min="0" required>
                         </div>
+
                         <div class="col-md-6 form-group">
-                            <label for="adhoc_faculty_phd" class="form-label">Number of Ad-hoc/Contract Teachers with
-                                PhD</label>
+                            <label for="adhoc_faculty_phd" class="form-label">Number of Adhoc teachers with PhD</label>
                             <input type="number" class="form-control" id="adhoc_faculty_phd" name="adhoc_faculty_phd"
                                 min="0" required>
                         </div>
@@ -180,8 +179,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                     <legend class="h5">2. Awards, Recognitions, and Fellowships</legend>
                     <div id="awards_container">
                     </div>
-                    <button type="button" class="btn btn-outline-primary" onclick="addAward()">+ Add
-                        Award/Fellowship</button>
+                    <button type="button" class="btn btn-outline-primary new-entry-button" onclick="addAward()">
+                        <i class="fas fa-award"></i> Add Award/Fellowship
+                    </button>
                 </fieldset>
 
                 <fieldset class="mb-5">
@@ -194,8 +194,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                             min="0">
                     </div>
                     <div class="form-group">
-                        <label for="phd_awardee_names" class="form-label">Names of Ph.D Awardees
-                            (comma-separated)</label>
+                        <label for="phd_awardee_names" class="form-label">Names of Ph.D Awardees</label>
                         <textarea class="form-control" id="phd_awardee_names" name="phd_awardee_names"
                             rows="3"></textarea>
                     </div>
@@ -205,15 +204,18 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                     <legend class="h5">4. Research & Consultancy Projects</legend>
                     <div id="projects_container">
                     </div>
-                    <button type="button" class="btn btn-outline-primary" onclick="addProject()">+ Add Project</button>
+                    <button type="button" class="btn btn-outline-primary new-entry-button" onclick="addProject()">
+                        <i class="fas fa-project-diagram"></i> Add Project
+                    </button>
                 </fieldset>
 
                 <fieldset class="mb-5">
                     <legend class="h5">5. Corporate Training Programs</legend>
                     <div id="training_container">
                     </div>
-                    <button type="button" class="btn btn-outline-primary" onclick="addTraining()">+ Add Training
-                        Program</button>
+                    <button type="button" class="btn btn-outline-primary new-entry-button" onclick="addTraining()">
+                        <i class="fas fa-chalkboard-teacher"></i> Add Training Program
+                    </button>
                 </fieldset>
 
                 <fieldset class="mb-5">
@@ -248,8 +250,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="other_recognitions" class="form-label">Any Other Recognitions
-                            (comma-separated)</label>
+                        <label for="other_recognitions" class="form-label">Any Other Recognitions</label>
                         <input type="text" class="form-control" id="other_recognitions" name="other_recognitions">
                     </div>
                     <div class="form-group">
@@ -277,7 +278,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="startup_names" class="form-label">Names of the Start-ups (comma-separated)</label>
+                        <label for="startup_names" class="form-label">Names of the Start-ups </label>
                         <textarea class="form-control" id="startup_names" name="startup_names" rows="3"></textarea>
                     </div>
                     <hr class="my-4">
@@ -307,24 +308,27 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                     <legend class="h5">8. Research Publications (Journals & Conferences)</legend>
                     <div id="publications_container">
                     </div>
-                    <button type="button" class="btn btn-outline-primary" onclick="addPublication()">+ Add
-                        Publication</button>
+                    <button type="button" class="btn btn-outline-primary new-entry-button" onclick="addPublication()">
+                        <i class="fas fa-book"></i> Add Publication
+                    </button>
                 </fieldset>
 
                 <fieldset class="mb-5">
                     <legend class="h5">9. Bibliometrics & h-index (Per Teacher)</legend>
                     <div id="bibliometrics_container">
                     </div>
-                    <button type="button" class="btn btn-outline-primary" onclick="addBibliometric()">+ Add Teacher
-                        Data</button>
+                    <button type="button" class="btn btn-outline-primary new-entry-button" onclick="addBibliometric()">
+                        <i class="fas fa-chart-line"></i> Add Teacher Data
+                    </button>
                 </fieldset>
 
                 <fieldset class="mb-5">
                     <legend class="h5">10. Books, Chapters, and MOOCs</legend>
                     <div id="books_container">
                     </div>
-                    <button type="button" class="btn btn-outline-primary" onclick="addBook()">+ Add
-                        Book/Chapter/MOOC</button>
+                    <button type="button" class="btn btn-outline-primary new-entry-button" onclick="addBook()">
+                        <i class="fas fa-book-open"></i> Add Book/Chapter/MOOC
+                    </button>
                 </fieldset>
 
                 <fieldset class="mb-5">
@@ -442,204 +446,199 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            function addEntry(containerId, htmlContent) {
-                const container = document.getElementById(containerId);
-                const newEntry = document.createElement('div');
-                newEntry.className = 'dynamic-entry';
-                newEntry.innerHTML = htmlContent;
-                container.appendChild(newEntry);
-            }
+function addEntry(containerId, htmlContent) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+        console.error('Container not found:', containerId);
+        return;
+    }
+    
+    const entryDiv = document.createElement('div');
+    entryDiv.className = 'dynamic-entry mb-4 p-3 border rounded';
+    entryDiv.innerHTML = htmlContent;
+    container.appendChild(entryDiv);
+}
 
-            function removeEntry(button) {
-                button.closest('.dynamic-entry').remove();
-            }
+function removeEntry(button) {
+    const entry = button.closest('.dynamic-entry');
+    if (entry) {
+        entry.remove();
+    }
+}
 
-            function addAward() {
-                const html = `
+function addAward() {
+    const html = `
+        <div class="mb-4">
             <h5>New Award/Fellowship Entry</h5>
-            <div class="row">
-                <div class="col-md-6 form-group">
+            <div class="row mb-3">
+                <div class="col-md-6">
                     <label class="form-label">Full Name(s) of Recipient(s)</label>
-                    <input type="text" class="form-control" name="award_names[]">
+                    <input type="text" class="form-control" name="award_names[]" required>
                 </div>
-                <div class="col-md-6 form-group">
+                <div class="col-md-6">
                     <label class="form-label">Level</label>
-                    <select class="form-select" name="award_levels[]">
+                    <select class="form-select" name="award_levels[]" required>
                         <option value="State">State</option>
                         <option value="National">National</option>
                         <option value="International">International</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Name of Award/Fellowship</label>
-                <input type="text" class="form-control" name="award_titles[]">
+                <input type="text" class="form-control" name="award_titles[]" required>
             </div>
-            <div class="row">
-                 <div class="col-md-6 form-group">
+            <div class="row mb-3">
+                <div class="col-md-6">
                     <label class="form-label">Issuing Agency</label>
-                    <input type="text" class="form-control" name="award_agencies[]">
+                    <input type="text" class="form-control" name="award_agencies[]" required>
                 </div>
-                <div class="col-md-4 form-group">
+                <div class="col-md-4">
                     <label class="form-label">Date of Award</label>
-                    <input type="date" class="form-control" name="award_dates[]">
+                    <input type="date" class="form-control" name="award_dates[]" required>
                 </div>
                 <div class="col-md-2 d-flex align-items-end">
-                    <button type="button" class="btn btn-danger remove-btn" onclick="removeEntry(this)">Remove</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removeEntry(this)">Remove</button>
                 </div>
-            </div>`;
-                addEntry('awards_container', html);
-            }
+            </div>
+        </div>`;
+    addEntry('awards_container', html);
+}
 
-            function addProject() {
-                const html = `
+function addProject() {
+    const html = `
+        <div class="mb-4">
             <h5>New Project Entry</h5>
-             <div class="row">
-                <div class="col-md-6 form-group">
+            <div class="row mb-3">
+                <div class="col-md-6">
                     <label class="form-label">Project Type</label>
-                    <select class="form-select" name="project_types[]">
+                    <select class="form-select" name="project_types[]" required>
                         <option value="Govt-Sponsored">Government Sponsored Research</option>
                         <option value="Non-Govt-Sponsored">Non-Government Sponsored Research</option>
                         <option value="Consultancy">Consultancy</option>
                     </select>
                 </div>
-                <div class="col-md-6 form-group">
+                <div class="col-md-6">
                     <label class="form-label">Project Title</label>
-                    <input type="text" class="form-control" name="project_titles[]">
+                    <input type="text" class="form-control" name="project_titles[]" required>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Sponsoring/Consulting Agency</label>
-                <input type="text" class="form-control" name="project_agencies[]">
+                <input type="text" class="form-control" name="project_agencies[]" required>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Investigator/Consultant Name(s)</label>
-                <textarea class="form-control" name="project_investigators[]" rows="2"></textarea>
+                <textarea class="form-control" name="project_investigators[]" rows="2" required></textarea>
             </div>
-            <div class="row">
-                <div class="col-md-4 form-group">
+            <div class="row mb-3">
+                <div class="col-md-4">
                     <label class="form-label">Start Date</label>
-                    <input type="date" class="form-control" name="project_start_dates[]">
+                    <input type="date" class="form-control" name="project_start_dates[]" required>
                 </div>
-                 <div class="col-md-4 form-group">
+                <div class="col-md-4">
                     <label class="form-label">End Date</label>
-                    <input type="date" class="form-control" name="project_end_dates[]">
+                    <input type="date" class="form-control" name="project_end_dates[]" required>
                 </div>
-                 <div class="col-md-4 form-group">
+                <div class="col-md-4">
                     <label class="form-label">Amount Sanctioned (INR Lakhs)</label>
-                    <input type="number" step="0.01" class="form-control" name="project_amounts[]">
+                    <input type="number" step="0.01" class="form-control" name="project_amounts[]" required>
                 </div>
             </div>
-             <button type="button" class="btn btn-danger" onclick="removeEntry(this)">Remove</button>
-            `;
-                addEntry('projects_container', html);
-            }
+            <button type="button" class="btn btn-danger btn-sm" onclick="removeEntry(this)">Remove</button>
+        </div>`;
+    addEntry('projects_container', html);
+}
 
-            function addTraining() {
-                const html = `
+function addTraining() {
+    const html = `
+        <div class="mb-4">
             <h5>New Corporate Training Program</h5>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Name of the Training Programme</label>
-                <input type="text" class="form-control" name="training_names[]">
+                <input type="text" class="form-control" name="training_names[]" required>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Corporate Name(s)</label>
-                <input type="text" class="form-control" name="training_corps[]">
+                <input type="text" class="form-control" name="training_corps[]" required>
             </div>
-             <div class="row">
-                <div class="col-md-6 form-group">
+            <div class="row mb-3">
+                <div class="col-md-6">
                     <label class="form-label">Revenue Generated (INR Lakhs)</label>
-                    <input type="number" step="0.01" class="form-control" name="training_revenue[]">
+                    <input type="number" step="0.01" class="form-control" name="training_revenue[]" required>
                 </div>
-                <div class="col-md-6 form-group">
+                <div class="col-md-6">
                     <label class="form-label">Number of Participants</label>
-                    <input type="number" class="form-control" name="training_participants[]">
+                    <input type="number" class="form-control" name="training_participants[]" required>
                 </div>
             </div>
-             <button type="button" class="btn btn-danger" onclick="removeEntry(this)">Remove</button>
-        `;
-                addEntry('training_container', html);
-            }
+            <button type="button" class="btn btn-danger btn-sm" onclick="removeEntry(this)">Remove</button>
+        </div>`;
+    addEntry('training_container', html);
+}
 
-            function addPublication() {
-                const html = `
+function addPublication() {
+    const html = `
+        <div class="mb-4">
             <h5>New Publication Entry</h5>
-            <div class="row">
-                 <div class="col-md-6 form-group">
+            <div class="row mb-3">
+                <div class="col-md-6">
                     <label class="form-label">Publication Type</label>
-                     <select class="form-select" name="pub_types[]">
+                    <select class="form-select" name="pub_types[]" required>
                         <option value="Journal">Journal</option>
                         <option value="Conference">Conference</option>
                     </select>
                 </div>
-                <div class="col-md-6 form-group">
+                <div class="col-md-6">
                     <label class="form-label">Title of Paper</label>
-                    <input type="text" class="form-control" name="pub_titles[]">
+                    <input type="text" class="form-control" name="pub_titles[]" required>
                 </div>
             </div>
-            <div class="row">
-                 <div class="col-md-6 form-group">
-                    <label class="form-label">Journal/Conference Name</label>
-                    <input type="text" class="form-control" name="pub_venues[]">
-                </div>
-                 <div class="col-md-6 form-group">
-                    <label class="form-label">Supported By (Scopus, WoS, IEEE, etc.)</label>
-                    <input type="text" class="form-control" name="pub_indexed[]">
-                </div>
-            </div>
-             <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Author(s) Name(s)</label>
-                <textarea class="form-control" name="pub_authors[]" rows="2"></textarea>
+                <textarea class="form-control" name="pub_authors[]" rows="2" required></textarea>
             </div>
-             <div class="row">
-                <div class="col-md-6 form-group">
-                    <label class="form-label">Month and Year of Publication</label>
-                    <input type="month" class="form-control" name="pub_dates[]">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label class="form-label">URL (if applicable)</label>
-                    <input type="url" class="form-control" name="pub_urls[]">
-                </div>
-            </div>
-            <button type="button" class="btn btn-danger" onclick="removeEntry(this)">Remove</button>
-        `;
-                addEntry('publications_container', html);
-            }
+            <button type="button" class="btn btn-danger btn-sm" onclick="removeEntry(this)">Remove</button>
+        </div>`;
+    addEntry('publications_container', html);
+}
 
-            function addBibliometric() {
-                const html = `
+function addBibliometric() {
+    const html = `
+        <div class="mb-4">
             <h5>New Teacher Bibliometric Data</h5>
-             <div class="row">
-                <div class="col-md-4 form-group">
+            <div class="row mb-3">
+                <div class="col-md-4">
                     <label class="form-label">Teacher's Name</label>
-                    <input type="text" class="form-control" name="bib_teacher_names[]">
+                    <input type="text" class="form-control" name="bib_teacher_names[]" required>
                 </div>
-                <div class="col-md-3 form-group">
+                <div class="col-md-3">
                     <label class="form-label">Cumulative Impact Factor</label>
-                    <input type="number" step="0.01" class="form-control" name="bib_impact_factors[]">
+                    <input type="number" step="0.01" class="form-control" name="bib_impact_factors[]" required>
                 </div>
-                <div class="col-md-2 form-group">
+                <div class="col-md-2">
                     <label class="form-label">Total Citations</label>
-                    <input type="number" class="form-control" name="bib_citations[]">
+                    <input type="number" class="form-control" name="bib_citations[]" required>
                 </div>
-                <div class="col-md-1 form-group">
+                <div class="col-md-2">
                     <label class="form-label">h-index</label>
-                    <input type="number" class="form-control" name="bib_h_indexes[]">
+                    <input type="number" class="form-control" name="bib_h_indexes[]" required>
                 </div>
-                 <div class="col-md-2 d-flex align-items-end">
-                    <button type="button" class="btn btn-danger remove-btn" onclick="removeEntry(this)">Remove</button>
+                <div class="col-md-1 d-flex align-items-end">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="removeEntry(this)">Remove</button>
                 </div>
             </div>
-        `;
-                addEntry('bibliometrics_container', html);
-            }
+        </div>`;
+    addEntry('bibliometrics_container', html);
+}
 
-            function addBook() {
-                const html = `
+function addBook() {
+    const html = `
+        <div class="mb-4">
             <h5>New Book/Chapter/MOOC Entry</h5>
-             <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Type</label>
-                <select class="form-select" name="book_types[]">
+                <select class="form-select" name="book_types[]" required>
                     <option value="Authored Book">Authored Reference Book</option>
                     <option value="Edited Book">Edited Book</option>
                     <option value="Chapter">Chapter in Edited Volume</option>
@@ -647,40 +646,35 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                     <option value="MOOC">MOOC</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Title</label>
-                <input type="text" class="form-control" name="book_titles[]">
+                <input type="text" class="form-control" name="book_titles[]" required>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label class="form-label">Author(s)/Editor(s)/Coordinator(s) Name(s)</label>
-                <textarea class="form-control" name="book_authors[]" rows="2"></textarea>
+                <textarea class="form-control" name="book_authors[]" rows="2" required></textarea>
             </div>
-            <div class="form-group">
-                <label class="form-label">Publisher / Platform (e.g., SWAYAM, NPTEL)</label>
-                <input type="text" class="form-control" name="book_publishers[]">
-            </div>
-            <button type="button" class="btn btn-danger" onclick="removeEntry(this)">Remove</button>
-        `;
-                addEntry('books_container', html);
-            }
+            <button type="button" class="btn btn-danger btn-sm" onclick="removeEntry(this)">Remove</button>
+        </div>`;
+    addEntry('books_container', html);
+}
 
-            function updateCounter(textarea, counterId) {
-                const maxLength = textarea.getAttribute('maxlength');
-                const currentLength = textarea.value.length;
-                const remaining = maxLength - currentLength;
-                document.getElementById(counterId).innerText = `${remaining} characters remaining`;
-            }
+// Initialize character counters for textareas
+function updateCounter(textarea, counterId) {
+    const maxLength = textarea.getAttribute('maxlength');
+    const currentLength = textarea.value.length;
+    const remaining = maxLength - currentLength;
+    document.getElementById(counterId).innerText = `${remaining} characters remaining`;
+}
 
-            // Initialize one entry for each dynamic section to start with
-            window.onload = function () {
-                addAward();
-                addProject();
-                addTraining();
-                addPublication();
-                addBibliometric();
-                addBook();
-            };
-        </script>
-    </body>
-</div>
+document.addEventListener('DOMContentLoaded', function() {
+    addAward();
+    addProject();
+    addTraining();
+    addPublication();
+    addBibliometric();
+    addBook();
+});
+</script>
+</body>
 <?php require "footer.php"; ?>
