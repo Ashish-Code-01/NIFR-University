@@ -77,45 +77,35 @@ if(isset($_GET['action'])) {
         <div class="div">
             <form class="fw-bold" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="mb-3">
-                    <p class="text-center fs-4 ">Faculty Details</p>
+                    <p class="text-center fs-4 "><b>Faculty Details</b></p>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">
-                        Academic Year
-                    </label>
-                    <input type="year" name="year" value="<?php echo $A_YEAR?>" class="form-control" disabled>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
+                    <input type="year" name="year" value="<?php echo $A_YEAR?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Department ID
-                    </label>
-                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" disabled>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
+                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Faculty Name
-                    </label>
-                    <input type="text" name="Faculty_Name" class="form-control" placeholder="Enter Name" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Faculty Name</b></label>
+                    <input type="text" name="Faculty_Name" class="form-control" placeholder="Enter Name" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Gender
-                    </label>
-                    <select name="gender" class="form-control">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Gender</b></label>
+                    <select name="gender" class="form-control" style="margin-top: 0;">
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                        <option value="other">other</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" >
-                        Designation
-                    </label>
-                    <select name="designation" class="form-control">
+                    <label class="form-label" style="margin-bottom: 6px;" ><b>Designation</b></label>
+                    <select name="designation" class="form-control" style="margin-top: 0;">
                         <option value="PROFESSOR">PROFESSOR</option>
                         <option value="ASSOCIATE PROFESSOR">ASSOCIATE PROFESSOR</option>
                         <option value="ASSISTANT PROFESSOR">ASSISTANT PROFESSOR</option>
@@ -125,73 +115,56 @@ if(isset($_GET['action'])) {
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Date of Birth
-                    </label>
-                    <input type="date" name="DOB" class="form-control" placeholder="Enter DOB" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Date of Birth</b></label>
+                    <input type="date" name="DOB" class="form-control" placeholder="Enter DOB" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Age
-                    </label>
-                    <input type="number" name="Age" class="form-control" placeholder="Enter Age" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Age</b></label>
+                    <input type="number" name="Age" class="form-control" placeholder="Enter Age" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Qualification
-                    </label>
-                    <input type="text" name="qualification" class="form-control" placeholder="Enter Highest Qualification" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Qualification</b></label>
+                    <input type="text" name="qualification" class="form-control" placeholder="Enter Highest Qualification" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Experience
-                    </label>
-                    <input type="text" name="experience" class="form-control" placeholder="Enter Experience(in months)" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Experience</b></label>
+                    <input type="text" name="experience" class="form-control" placeholder="Enter Experience(in months)" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        PAN Number
-                    </label>
-                    <input type="text" name="pan_number" class="form-control" placeholder="Enter PAN Number" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>PAN Number</b></label>
+                    <input type="text" name="pan_number" class="form-control" placeholder="Enter PAN Number" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                    Whether faculty is associated with the institute in previous academic year(2022-2023)?
-                    </label>
-                    <select name="Associated" class="form-control">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Whether faculty is associated with the institute in previous academic year(2022-2023)? </b></label>
+                    <select name="Associated" class="form-control" style="margin-top: 0;">
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Facuty Experience in the relevent subject Area(Teaching & Industrial)- 31 July-2023
-                    </label>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Facuty Experience in the relevent subject Area(Teaching & Industrial)- 31 July-2023</b></label>
                     <input type="text" name="Teaching" class="form-control" placeholder="Enter teaching exerience (in Months)" required>
                     <input type="text" name="Industrial" class="form-control" placeholder="Enter Industrial exerience (in Months)" required>
                 </div>
 
+                <br>
                 <div class="mb-3">
-                    <label class="form-label">
-                    Currently working with institution?
-                    </label>
-                    <p><span class="small" style="margin-left: -0.8rem;">Date of joining the institute</p>
-                    <input type="date" name="Date_of_joining" class="form-control" placeholder="Date of Joining the institute" required>
-                    <p><span class="small" style="margin-left: -0.8rem;">Date of latest joining</p>
-                    <input type="date" name="latest_joining" class="form-control" placeholder="Latest Joining" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Currently working with institution?</b></label>
+                    <p><span class="small" style="margin-left: -0.8rem;" ><b>Date of joining the institute</b></p>
+                    <input type="date" name="Date_of_joining" class="form-control" placeholder="Date of Joining the institute" style="margin-top: 0;" required>
+                    <p><span class="small" style="margin-left: -0.8rem;"><b>Date of latest joining</b></p>
+                    <input type="date" name="latest_joining" class="form-control" placeholder="Latest Joining" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                    Association Type
-                    </label>
-                    <select name="Association_Type" class="form-control">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Association Type</b></label>
+                    <select name="Association_Type" class="form-control" style="margin-top: 0;">
                         <option value="REGULAR">REGULAR</option>
                         <option value="CONTRACTUAL">CONTRACTUAL</option>
                         <option value="VISITING">VISITING</option>
@@ -199,31 +172,23 @@ if(isset($_GET['action'])) {
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Email ID of Faculty(Official Email ID)
-                    </label>
-                    <input type="email" name="EmailID_of_Faculty" class="form-control" placeholder="Enter Email ID" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Email ID of Faculty(Official Email ID)</b></label>
+                    <input type="email" name="EmailID_of_Faculty" class="form-control" placeholder="Enter Email ID" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                       Mobile Number of Faculty
-                    </label>
-                    <input type="number" name="Mobile_Number_of_Faculty" class="form-control" placeholder="Enter Mobile number" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Mobile Number of Faculty</b></label>
+                    <input type="number" name="Mobile_Number_of_Faculty" class="form-control" placeholder="Enter Mobile number" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                       Name of Award
-                    </label>
-                    <input type="text" name="Name_of_Award" class="form-control" placeholder="Enter Name of Award" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Name of Award</b></label>
+                    <input type="text" name="Name_of_Award" class="form-control" placeholder="Enter Name of Award" style="margin-top: 0;" >
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                    Level of Award
-                    </label>
-                    <select name="Level_of_Award" class="form-control">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Level of Award</b></label>
+                    <select name="Level_of_Award" class="form-control" style="margin-top: 0;">
                         <option value="">Select an option</option>
                         <option value="NATIONAL">NATIONAL</option>
                         <option value="INTERNATIONAL">INTERNATIONAL</option>
@@ -231,38 +196,28 @@ if(isset($_GET['action'])) {
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                       Name of Award Agency
-                    </label>
-                    <input type="text" name="Name_of_Award_Agency" class="form-control" placeholder="Enter Name of Award Agency" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Name of Award Agency</b></label>
+                    <input type="text" name="Name_of_Award_Agency" class="form-control" placeholder="Enter Name of Award Agency" style="margin-top: 0;" >
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                       Address of Award Agency
-                    </label>
-                    <input type="text" name="Address_of_Award_Agency" class="form-control" placeholder="Enter Address of Award Agency" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Address of Award Agency</b></label>
+                    <input type="text" name="Address_of_Award_Agency" class="form-control" placeholder="Enter Address of Award Agency" style="margin-top: 0;">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                       Year of Received Award
-                    </label>
-                    <input type="date" name="Year_of_Received_Award" class="form-control" placeholder="Enter Year of Received Award" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Year of Received Award</b></label>
+                    <input type="date" name="Year_of_Received_Award" class="form-control" placeholder="Enter Year of Received Award" style="margin-top: 0;">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Email ID of Agency
-                    </label>
-                    <input type="email" name="EmailID_of_Agency" class="form-control" placeholder="Enter Agency Email ID" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Email ID of Agency</b></label>
+                    <input type="email" name="EmailID_of_Agency" class="form-control" placeholder="Enter Agency Email ID" style="margin-top: 0;">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                       Contact of Agency
-                    </label>
-                    <input number="text" name="Contact_of_Agency" class="form-control" placeholder="Enter Mobile number" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Contact of Agency</b></label>
+                    <input number="text" name="Contact_of_Agency" class="form-control" placeholder="Enter Mobile number" style="margin-top: 0;">
                 </div>
 
                 <input type="submit" class="submit" value="Submit" name="submit" onclick="return Validate()">
@@ -271,7 +226,7 @@ if(isset($_GET['action'])) {
 
     <!-- Show Entered Data -->
     <div class="row my-5" >
-    <h3 class="fs-4 mb-3 text-center" id="msg">You Have Entered the Following Data</h3>
+    <h3 class="fs-4 mb-3 text-center" id="msg"><b>You Have Entered the Following Data</b></h3>
         <div class="col ">
             <div class="overflow-auto">
                 <table class="table bg-white rounded shadow-sm  table-hover ">
@@ -301,6 +256,7 @@ if(isset($_GET['action'])) {
                             <th scope="col">Year of Received Award</th>
                             <th scope="col">Email ID of Agency</th>
                             <th scope="col">Contact of Agency</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -334,6 +290,7 @@ if(isset($_GET['action'])) {
                     <td><?php echo $row['YEAR_OF_RECEIVED_AWARD']?></td>
                     <td><?php echo $row['EMAIL_OF_AGENCY']?></td>
                     <td><?php echo $row['CONTACT_OF_AGENCY']?></td>
+                    <td><a class="dbutton" href="EditFacultyDetails.php?action=edit&ID=<?php echo $row['ID']?>">Edit</a></td>
                     <td><a class="dbutton" href="FacultyDetails.php?action=delete&ID=<?php echo $row['ID']?>">Delete</a></td>
                 </tr>
                 <?php

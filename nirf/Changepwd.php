@@ -69,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </label>
             <input type="password" name="new_password" class="form-control" placeholder="Enter New Password" required>
         </div>
+       
         <div class="mb-3">
             <label class="form-label">
                 Confirm New Password

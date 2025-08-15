@@ -52,34 +52,27 @@ if(isset($_GET['action'])) {
         <div class="div">
             <form class="fw-bold" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="mb-3">
-                    <p class="text-center fs-4 ">Patent Details Individual</p>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        Academic Year
-                    </label>
-                    <input type="text" name="year" value="<?php echo $A_YEAR?>" class="form-control" disabled>
+                    <p class="text-center fs-4 "><b>Patent Details Individual</b></p>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Department ID
-                    </label>
-                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" disabled>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
+                    <input type="text" name="year" value="<?php echo $A_YEAR?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Patent Application Number
-                    </label>
-                    <input type="text" name="patent_application_number" class="form-control" placeholder="Enter patent application number" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
+                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Status of patent
-                    </label>
-                    <select name="status_of_patent" class="form-control">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Patent Application Number</b></label>
+                    <input type="text" name="patent_application_number" class="form-control" placeholder="Enter patent application number" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Status of patent</b></label>
+                    <select name="status_of_patent" class="form-control" style="margin-top: 0;">
                         <option value="FILED">FILED</option>
                         <option value="GRANTED">GRANTED</option>
                         <option value="PUBLISHED">PUBLISHED</option>
@@ -87,66 +80,48 @@ if(isset($_GET['action'])) {
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Inventor's Name
-                    </label>
-                    <input type= "text" name="Inventors_name" class="form-control" placeholder="Enter Name" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Inventor's Name</b></label>
+                    <input type= "text" name="Inventors_name" class="form-control" placeholder="Enter Name" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Title of the patent
-                    </label>
-                    <input type="text" name="Title_of_the_patent" class="form-control" placeholder="Enter title of the patent" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Title of the patent</b></label>
+                    <input type="text" name="Title_of_the_patent" class="form-control" placeholder="Enter title of the patent" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Applicant Name
-                    </label>
-                    <input type="text" name="Applicant_Name" class="form-control" placeholder="Enter applicant name" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Applicant Name</b></label>
+                    <input type="text" name="Applicant_Name" class="form-control" placeholder="Enter applicant name" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Patent Filed Date
-                    </label>
-                    <input type="date" name="Patent_Filed" class="form-control" placeholder="Enter patent filed date " required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Patent Filed Date</b></label>
+                    <input type="date" name="Patent_Filed" class="form-control" placeholder="Enter patent filed date " style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Patent published date
-                    </label>
-                    <input type="date" name="Patent_published_date" class="form-control" placeholder="Enter patent published date ">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Patent published date</b></label>
+                    <input type="date" name="Patent_published_date" class="form-control" placeholder="Enter patent published date " style="margin-top: 0;">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Patent granted date
-                    </label>
-                    <input type="date" name="Patent_granted_date" class="form-control" placeholder="Enter patent published date ">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Patent granted date</b></label>
+                    <input type="date" name="Patent_granted_date" class="form-control" placeholder="Enter patent published date " style="margin-top: 0;">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Patent publication number
-                    </label>
-                    <input type= "Number" name="Patent_publication_number" class="form-control" placeholder="Enter patent publication number " required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Patent publication number</b></label>
+                    <input type= "Number" name="Patent_publication_number" class="form-control" placeholder="Enter patent publication number " style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Assignee's Name
-                    </label>
-                    <input type= "text" name="Assignee_Name" class="form-control" placeholder="Enter Assignee's Name" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Assignee's Name</b></label>
+                    <input type= "text" name="Assignee_Name" class="form-control" placeholder="Enter Assignee's Name" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        URL
-                    </label>
-                    <input type= "text" name="URL" class="form-control" placeholder="Enter URL or website's link" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>URL</b></label>
+                    <input type= "text" name="URL" class="form-control" placeholder="Enter URL or website's link" style="margin-top: 0;" required>
                 </div>
 
                 <input type="submit" class="submit" value="Submit" name="submit" onclick="return Validate()">
@@ -155,7 +130,7 @@ if(isset($_GET['action'])) {
 
          <!-- Show Entered Data -->
     <div class="row my-5" >
-    <h3 class="fs-4 mb-3 text-center" id="msg">You Have Entered the Following Data</h3>
+    <h3 class="fs-4 mb-3 text-center" id="msg"><b>You Have Entered the Following Data</b></h3>
         <div class="col ">
             <div class="overflow-auto">
                 <table class="table bg-white rounded shadow-sm  table-hover ">
@@ -173,6 +148,7 @@ if(isset($_GET['action'])) {
                             <th scope="col">Patent publication number</th>
                             <th scope="col">Assignee's Name</th>
                             <th scope="col">URL</th>
+                            <th scope="col">Edit</th><b></b>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -194,6 +170,7 @@ if(isset($_GET['action'])) {
                     <td><?php echo $row['PATENT_PUBLICATION_NUMBER']?></td>
                     <td><?php echo $row['ASIGNEES_NAME']?></td>
                     <td><?php echo $row['URL']?></td>
+                    <td><a class="dbutton" href="EditPatentDetailsIndividual.php?action=edit&ID=<?php echo $row['ID']?>">Edit</a></td>
                     <td><a class="dbutton" href="PatentDetailsIndividual.php?action=delete&ID=<?php echo $row['ID']?>">Delete</a></td>
                 </tr>
                 <?php

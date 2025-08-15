@@ -18,6 +18,10 @@ if (isset($_POST['submit'])) {
     $permanent_professors = mysqli_real_escape_string($conn, $_POST['permanent_professors']);
     $permanent_associate_professors = mysqli_real_escape_string($conn, $_POST['permanent_associate_professors']);
     $permanent_assistant_professors = mysqli_real_escape_string($conn, $_POST['permanent_assistant_professors']); // This was missing
+
+    $professor_of_practice_associate = mysqli_real_escape_string($conn, $_POST['professor_of_practice_associate']);
+    $pm_professor = mysqli_real_escape_string($conn, $_POST['pm_professor']);
+
     $contract_teachers = mysqli_real_escape_string($conn, $_POST['contract_teachers']);
     $programmes_offered = mysqli_real_escape_string($conn, $_POST['programmes_offered']);
     $executive_development_programs = mysqli_real_escape_string($conn, $_POST['executive_development_programs']);
@@ -25,19 +29,23 @@ if (isset($_POST['submit'])) {
     $class_1 = mysqli_real_escape_string($conn, $_POST['class_1']);
     $class_2 = mysqli_real_escape_string($conn, $_POST['class_2']);
     $class_3 = mysqli_real_escape_string($conn, $_POST['class_3']);
+
+    $class_4 = mysqli_real_escape_string($conn, $_POST['class_4']);
+    $apprenticeships_interns = mysqli_real_escape_string($conn, $_POST['apprenticeships_interns']);
+
     $type = mysqli_real_escape_string($conn, $_POST['type']);
 
 
     $query = "INSERT INTO `Brief_Details_of_the_Department` ( `DEPARTMENT_NAME`, `YEAR_OF_ESTABLISHMENT`, `HOD_NAME`, `HOD_EMAIL`, `HOD_MOBILE`, 
         `IQAC_COORDINATOR_NAME`, `IQAC_COORDINATOR_EMAIL`, `IQAC_COORDINATOR_MOBILE`, 
         `SANCTIONED_TEACHING_FACULTY`, `PERMANENT_PROFESSORS`, `PERMANENT_ASSOCIATE_PROFESSORS`, 
-        `PERMANENT_ASSISTANT_PROFESSORS`, `CONTRACT_TEACHERS`, `PROGRAMMES_OFFERED`, 
-        `EXECUTIVE_DEVELOPMENT_PROGRAMS`, `AREAS_OF_RESEARCH`,`CLASS_1`,`CLASS_2`,`ClASS_3`,`TYPE`
+        `PERMANENT_ASSISTANT_PROFESSORS`, `PROFESSOR_OF_PRACTICE_ASSOCIATE`, `PM_PROFESSOR`, `CONTRACT_TEACHERS`, `PROGRAMMES_OFFERED`, 
+        `EXECUTIVE_DEVELOPMENT_PROGRAMS`, `AREAS_OF_RESEARCH`,`CLASS_1`,`CLASS_2`,`CLASS_3`,`CLASS_4`,`APPRENTICESHIPS_INTERNS`,`TYPE`
     ) VALUES ( '$department_name', '$year_of_establishment', '$hod_name', '$hod_email', '$hod_mobile',
         '$iqac_coordinator_name', '$iqac_coordinator_email', '$iqac_coordinator_mobile',
         '$sanctioned_teaching_faculty', '$permanent_professors', '$permanent_associate_professors',
-        '$permanent_assistant_professors', '$contract_teachers', '$programmes_offered',
-        '$executive_development_programs', '$areas_of_research', '$class_1', '$class_2', '$class_3','$type'
+        '$permanent_assistant_professors', '$professor_of_practice_associate', '$pm_professor', '$contract_teachers', '$programmes_offered',
+        '$executive_development_programs', '$areas_of_research', '$class_1', '$class_2', '$class_3', '$class_4', '$apprenticeships_interns', '$type'
     )
     ON DUPLICATE KEY UPDATE
         DEPARTMENT_NAME = VALUES(DEPARTMENT_NAME), YEAR_OF_ESTABLISHMENT = VALUES(YEAR_OF_ESTABLISHMENT),
@@ -45,9 +53,10 @@ if (isset($_POST['submit'])) {
         IQAC_COORDINATOR_NAME = VALUES(IQAC_COORDINATOR_NAME), IQAC_COORDINATOR_EMAIL = VALUES(IQAC_COORDINATOR_EMAIL),
         IQAC_COORDINATOR_MOBILE = VALUES(IQAC_COORDINATOR_MOBILE), SANCTIONED_TEACHING_FACULTY = VALUES(SANCTIONED_TEACHING_FACULTY),
         PERMANENT_PROFESSORS = VALUES(PERMANENT_PROFESSORS), PERMANENT_ASSOCIATE_PROFESSORS = VALUES(PERMANENT_ASSOCIATE_PROFESSORS),
-        PERMANENT_ASSISTANT_PROFESSORS = VALUES(PERMANENT_ASSISTANT_PROFESSORS), CONTRACT_TEACHERS = VALUES(CONTRACT_TEACHERS),
-        PROGRAMMES_OFFERED = VALUES(PROGRAMMES_OFFERED), EXECUTIVE_DEVELOPMENT_PROGRAMS = VALUES(EXECUTIVE_DEVELOPMENT_PROGRAMS),
-        AREAS_OF_RESEARCH = VALUES(AREAS_OF_RESEARCH), CLASS_1 = VALUES(CLASS_1),CLASS_2 = VALUES(CLASS_2),CLASS_3 = VALUES(CLASS_3)";
+        PERMANENT_ASSISTANT_PROFESSORS = VALUES(PERMANENT_ASSISTANT_PROFESSORS), 
+        PROFESSOR_OF_PRACTICE_ASSOCIATE = VALUES(PROFESSOR_OF_PRACTICE_ASSOCIATE), PM_PROFESSOR = VALUES(PM_PROFESSOR),
+        CONTRACT_TEACHERS = VALUES(CONTRACT_TEACHERS),PROGRAMMES_OFFERED = VALUES(PROGRAMMES_OFFERED), EXECUTIVE_DEVELOPMENT_PROGRAMS = VALUES(EXECUTIVE_DEVELOPMENT_PROGRAMS),
+        AREAS_OF_RESEARCH = VALUES(AREAS_OF_RESEARCH), CLASS_1 = VALUES(CLASS_1),CLASS_2 = VALUES(CLASS_2),CLASS_3 = VALUES(CLASS_3),CLASS_4 = VALUES(CLASS_4),APPRENTICESHIPS_INTERNS = VALUES(APPRENTICESHIPS_INTERNS),TYPE = VALUES(TYPE)";
 
     if (mysqli_query($conn, $query)) {
         echo "<script>alert('Data Entered.')</script>";
@@ -74,91 +83,100 @@ if (isset($_GET['action'])) {
 <div class="div">
     <form class="fw-bold" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="mb-3">
-            <p class="text-center fs-4"><b>Brief Details of the Department / Institution/ School/ Centre/ Sub-campus/
-                    Model or Conducted/ Constituent College of University</b></p>
+            <p class="text-center fs-4"><b>Brief Details of the Department / Institution/ School/ Centre/ Sub-campus/ Model or Conducted/ Constituent College of University
+</b></p>
         </div>
         <div class="mb-3">
-            <label for="form-label" style="margin-bottom: 6px">Name of the Department/Institution</label>
-            <input type=" text" id="department_name" name="department_name" required>
+            <label for="form-label" style="margin-bottom: 6px">Name of the Department/ Institution/ School/ Centre/ Sub-campus/ Model College</label>
+            <input type=" text" id="department_name" name="department_name" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="form-lable" style="margin: bottom 6px;">Year of Establishment</label>
             <input type="number" id="year_established" name="year_of_establishment" min="1800"
-                max="<?php echo date("Y"); ?>" required>
+                max="<?php echo date("Y"); ?>" class="form-control" required>
         </div>
         <hr>
-        <h2>Head of Department (HoD)/Director Details</h2>
+        <!-- <h2>Head of Department (HoD)/Director Details</h2> -->
         <div class="mb-3">
-            <label for="form-lable">Name</label>
-            <input type="text" id="hod_name" name="hod_name" required>
+            <label for="form-lable">Name of the current HoD/Director</label>
+            <input type="text" id="hod_name" name="hod_name" placeholder="Enter Name" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="form-lable">Email</label>
-            <input type="email" id="hod_email" name="hod_email" required>
+            <label for="form-lable">Email of the HoD/Director</label>
+            <input type="email" id="hod_email" name="hod_email" placeholder="Enter Email" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="form-lable">Mobile Number</label>
-            <input type="tel" id="hod_mobile" name="hod_mobile" pattern="[0-9]{10}"
+            <label for="form-lable">Mobile Number of the HoD/Director</label>
+            <input type="tel" id="hod_mobile" name="hod_mobile" placeholder="Enter Mobile Number" pattern="[0-9]{10}"
                 title="Enter a 10-digit mobile number">
         </div>
         <hr>
-        <h2>IQAC Coordinator Details</h2>
+        <!-- <h2>IQAC Coordinator Details</h2> -->
         <div class="mb-3">
-            <label for="form-lable">Name</label>
-            <input type="text" id="iqac_name" name="iqac_coordinator_name" required>
+            <label for="form-lable">Name of the IQAC Coordinator</label>
+            <input type="text" id="iqac_name" name="iqac_coordinator_name" placeholder="Enter Name" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="form-lable">Email</label>
-            <input type="email" id="iqac_email" name="iqac_coordinator_email" required>
+            <label for="form-lable">Email of the IQAC Coordinator</label>
+            <input type="email" id="iqac_email" name="iqac_coordinator_email" placeholder="Enter Email" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label for="form-lable">Mobile Number</label>
-            <input type="tel" id="iqac_mobile" name="iqac_coordinator_mobile" pattern="[0-9]{10}"
+            <label for="form-lable">Mobile Number of the IQAC Coordinator</label>
+            <input type="tel" id="iqac_mobile" name="iqac_coordinator_mobile" placeholder="Enter Mobile Number" pattern="[0-9]{10}"
                 title="Enter a 10-digit mobile number">
         </div>
         <hr>
-        <h2>Faculty Details</h2>
+        <!-- <h2>Faculty Details</h2> -->
         <div class="mb-3">
             <label for="form-label">Sanctioned Teaching Faculty</label>
-            <input type="number" id="sanctioned_faculty" name="sanctioned_teaching_faculty" min="0" required>
+            <input type="number" id="sanctioned_faculty" name="sanctioned_teaching_faculty" min="0" placeholder="Enter Count" class="form-control" required>
         </div>
         <div class="form-group">
             <label>Number of Permanent Faculties</label>
             <div class="mb-3">
                 <div>
-                    <label for="form-label" style="font-weight:normal;">Professors</label>
-                    <input type="number" id="professors" name="permanent_professors" min="0" value="0" required>
+                    <label for="form-label" style="font-weight:normal;">Number of Professor</label>
+                    <input type="number" id="professors" name="permanent_professors" min="0" value="0" placeholder="Enter Count" class="form-control" required>
                 </div>
                 <div>
-                    <label for="form-label" style="font-weight:normal;">Associate Professors</label>
-                    <input type="number" id="assoc_professors" name="permanent_associate_professors" min="0" value="0"
-                        required>
+                    <label for="form-label" style="font-weight:normal;">Associate Professor</label>
+                    <input type="number" id="assoc_professors" name="permanent_associate_professors" min="0" value="0" placeholder="Enter Count" class="form-control" required>
                 </div>
                 <div>
                     <label for="form-label" style="font-weight:normal;">Assistant Professors</label>
-                    <input type="number" id="asst_professors" name="permanent_assistant_professors" min="0" value="0"
-                        required>
+                    <input type="number" id="asst_professors" name="permanent_assistant_professors" min="0" value="0" placeholder="Enter Count" class="form-control" required>
                 </div>
             </div>
         </div>
+        <!-- ******** -->
+         <div class="form-group">
+            <label for="contract_teachers">Number of Professor of Practice/Associate Professor and Assistant Professor of Practice</label>
+            <input type="number" id="contract_teachers" name="contract_teachers" min="0" placeholder="Enter Count" class="form-control" required>
+        </div>
         <div class="form-group">
-            <label for="contract_teachers">No. of Ad hoc/Contract Teachers</label>
-            <input type="number" id="contract_teachers" name="contract_teachers" min="0" required>
+            <label for="contract_teachers">PM Professor (ANRF)</label>
+            <input type="number" id="contract_teachers" name="contract_teachers" min="0" placeholder="Enter Count" class="form-control" required>
+        </div>
+         <!-- ******** -->
+
+        <div class="form-group">
+            <label for="contract_teachers">Number of Ad hoc/Contract Teachers</label>
+            <input type="number" id="contract_teachers" name="contract_teachers" min="0" placeholder="Enter Count" class="form-control" required>
         </div>
         <hr>
-        <h2>Academic & Research Details</h2>
+        <!-- <h2>Academic & Research Details</h2> -->
         <div class="mb-3">
             <label for="form-label">Certificate/Diploma/UG/PG Programmes Offered (with intake)</label>
-            <textarea id="programs_offered" name="programmes_offered"
-                placeholder="e.g., B.Sc. Computer Science (Intake: 120), M.A. History (Intake: 60)"></textarea>
+            <textarea id="programs_offered" name="programmes_offered" style="width: 100%; height: 180px;"
+                placeholder="with intake"></textarea>
         </div>
         <div class="mb-3">
             <label for="form-label">Number of Executive Development Programs</label>
-            <input type="number" id="edp_count" name="executive_development_programs" min="0" required>
+            <input type="number" id="edp_count" name="executive_development_programs" min="0" placeholder="Enter Count" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="form-label">Areas of Research</label>
-            <textarea id="research_areas" name="areas_of_research"
+            <textarea id="research_areas" name="areas_of_research" style="width: 100%; height: 180px;"
                 placeholder="e.g., Artificial Intelligence, Machine Learning, Indian History, Quantum Physics"></textarea>
         </div>
         <div class="form-group">
@@ -166,17 +184,25 @@ if (isset($_GET['action'])) {
             <div class="mb-3">
                 <div>
                     <label for="form-label" style="font-weight:normal;">Class I</label>
-                    <input type="number" id="Non_teaching_Employee_Class_1" name="class_1" min="0" value="0" required>
+                    <input type="number" id="Non_teaching_Employee_Class_1" name="class_1" min="0" value="0" placeholder="Enter Count" class="form-control" required>
                 </div>
                 <div>
                     <label for="form-label" style="font-weight:normal;">Class II</label>
-                    <input type="number" id="Non_teaching_Employee_Class_2" name="class_2" min="0" value="0" required>
+                    <input type="number" id="Non_teaching_Employee_Class_2" name="class_2" min="0" value="0" placeholder="Enter Count" class="form-control" required>
                 </div>
                 <div>
                     <label for="form-label" style="font-weight:normal;">Class III</label>
-                    <input type="number" id="Non_teaching_Employee_Class_3" name="class_3" min="0" value="0" required>
+                    <input type="number" id="Non_teaching_Employee_Class_3" name="class_3" min="0" value="0" placeholder="Enter Count" class="form-control" required>
+                </div>
+                <div>
+                    <label for="form-label" style="font-weight:normal;">Class IV</label>
+                    <input type="number" id="Non_teaching_Employee_Class_4" name="class_4" min="0" value="0" placeholder="Enter Count" class="form-control" required>
                 </div>
             </div>
+        </div>
+        <div class="mb-3">
+            <label for="form-label">Number of Apprenticeships/Interns</label>
+            <input type="number" id="edp_count" name="executive_development_programs" min="0" placeholder="Enter Count" class="form-control" required>
         </div>
         <div class="mb-3">
             <label class="form-label" style="margin-bottom: 6px;"><b>Category</b></label>
@@ -213,13 +239,19 @@ if (isset($_GET['action'])) {
                         <th scope="col">Number of Permanent Professors</th>
                         <th scope="col">Number of Permanent Associate Professors</th>
                         <th scope="col">Number of Permanent Assistant Professors</th>
+
+                        <th scope="col">Number of Professor of Practice/Associate Professor and Assistant Professor of Practice</th>
+                        <th scope="col">PM Professor (ANRF)</th>
+
                         <th scope="col">No. of Ad hoc/Contract Teachers</th>
                         <th scope="col">Certificate/Diploma/UG/PG Programmes Offered (with intake)</th>
                         <th scope="col">Number of Executive Development Programs</th>
                         <th scope="col">Areas of Research</th>
                         <th scope="col">Non-teaching Employee Class I</th>
                         <th scope="col">Non-teaching Employee Class II</th>
-                        <th scope="col">Non-teaching Employee Class II</th>
+                        <th scope="col">Non-teaching Employee Class III</th>
+                        <th scope="col">Non-teaching Employee Class IV</th>
+                        <th scope="col">Number of Apprenticeships/Interns</th>
                         <th scope="col">Category</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
@@ -243,12 +275,19 @@ if (isset($_GET['action'])) {
                             <td><?php echo $row['permanent_professors'] ?></td>
                             <td><?php echo $row['permanent_associate_professors'] ?></td>
                             <td><?php echo $row['permanent_assistant_professors'] ?></td>
+
+                            <td><?php echo $row['professor_of_practice_associate'] ?></td>
+                            <td><?php echo $row['pm_professor'] ?></td>
+                            
                             <td><?php echo $row['contract_teachers'] ?></td>
                             <td><?php echo $row['programmes_offered'] ?></td>
                             <td><?php echo $row['executive_development_programs'] ?></td>
                             <td><?php echo $row['class_1'] ?></td>
                             <td><?php echo $row['class_2'] ?></td>
                             <td><?php echo $row['class_3'] ?></td>
+                            <td><?php echo $row['class_4'] ?></td>
+                            <td><?php echo $row['apprenticeships_interns'] ?></td>
+
                             <td><?php echo $row['type'] ?></td>
                             <td><a class="dbutton"
                                     href="EditEmployerDetails.php?action=edit&ID=<?php echo $row['ID'] ?>">Edit</a></td>

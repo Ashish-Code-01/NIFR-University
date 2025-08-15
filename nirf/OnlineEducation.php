@@ -21,7 +21,7 @@ if (isset($_POST['submit'])){
     // $q=mysqli_query($conn,$query);
     if(mysqli_query($conn, $query)){
         echo "<script>alert('Data Entered.')</script>";
-        echo '<script>window.location.href = "OnlineEducation.php";</script>';
+        echo '<script>window.location.href = "DetailsOfDepartment.php";</script>';
     } else{
         echo "<script>alert('Woops! There was an error (Contact Admin if it continues).')</script>";
     }
@@ -39,54 +39,45 @@ if(isset($_GET['action'])) {
         <div class="div">
             <form class="fw-bold" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="mb-3">
-                    <p class="text-center fs-4 ">Online Education</p>
+                    <p class="text-center fs-4 "><b>Online Education</b></p>
                 </div>
                 
                 <!-- The Instructions -->
                 <div class="alert alert-danger align-content-between justify-content-center" role="alert">
-                    <p style="font-weight: 200;">Note:Enter the Value(s) in all field(s);If not applicable enter zero[0]</p>   
+                    <h5><b></b>Important Notes</h5>
+                    <ul type="dot">
+                        <li style="font-weight: 200;"><b>Note: Enter value(s) in all field(s); if not applicable enter zero[0]</b></li>
+                    </ul>   
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Academic Year
-                    </label>
-                    <input type="year" name="year" value="<?php echo $A_YEAR?>" class="form-control" disabled>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
+                    <input type="year" name="year" value="<?php echo $A_YEAR?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Department ID
-                    </label>
-                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" disabled>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
+                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Portal Name
-                    </label>
-                    <input type="text" name="Portal_Name" class="form-control" placeholder="Enter Portal Name" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Portal Name</b></label>
+                    <input type="text" name="Portal_Name" class="form-control" placeholder="Enter Portal Name" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                    Number Of Students offered Online Courses
-                    </label>
-                    <input type="text" name="studentsOfferedOnlineCourses" class="form-control" placeholder="Enter No of Students offered Online Courses" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Number Of Students offered Online Courses</b></label>
+                    <input type="text" name="studentsOfferedOnlineCourses" class="form-control" placeholder="Enter No of Students offered Online Courses" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                    Total No. of online courses
-                    </label>
-                    <input type="text" name="totalonlinecourses" class="form-control" placeholder="Enter Total No of Online Courses" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Total No. of online courses</b></label>
+                    <input type="text" name="totalonlinecourses" class="form-control" placeholder="Enter Total No of Online Courses" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                    Total No. Of Credits Transfered
-                    </label>
-                    <input type="text" name="totalnumberofcreditstransfered" class="form-control" placeholder="Enter Total No of Credits Transfered" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Total No. Of Credits Transfered</b></label>
+                    <input type="text" name="totalnumberofcreditstransfered" class="form-control" placeholder="Enter Total No of Credits Transfered" style="margin-top: 0;" required>
                 </div>
                 
                 <input type="submit" class="submit" value="Submit" name="submit" onclick="return Validate()">
@@ -95,7 +86,7 @@ if(isset($_GET['action'])) {
 
         <!-- Show Entered Data -->
     <div class="row my-5" >
-    <h3 class="fs-4 mb-3 text-center" id="msg">You Have Entered the Following Data</h3>
+    <h3 class="fs-4 mb-3 text-center" id="msg"><b>You Have Entered the Following Data</b></h3>
         <div class="col ">
             <div class="overflow-auto">
                 <table class="table bg-white rounded shadow-sm  table-hover ">
@@ -106,6 +97,7 @@ if(isset($_GET['action'])) {
                             <th scope="col">Number Of Students offered Online Courses</th>
                             <th scope="col">Total No. of online courses</th>
                             <th scope="col">Total No. Of Credits Transfered</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -120,6 +112,7 @@ if(isset($_GET['action'])) {
                     <td><?php echo $row['NO_STUDENT_OFFER_OS']?></td>
                     <td><?php echo $row['NO_OF_ONLINE_COURSES']?></td>
                     <td><?php echo $row['TOTAL_NO_CREDIT_TRANS']?></td>
+                    <td><a class="dbutton" href="EditOnlineEducation.php?action=edit&ID=<?php echo $row['ID']?>">Edit</a></td>
                     <td><a class="dbutton" href="OnlineEducation.php?action=delete&ID=<?php echo $row['ID']?>">Delete</a></td>
                 </tr>
                 <?php

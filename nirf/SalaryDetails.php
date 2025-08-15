@@ -65,27 +65,21 @@ if(isset($_GET['action'])) {
         <div class="div">
             <form class="fw-bold" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" autocomplete="off">
                 <div class="mb-3">
-                    <p class="text-center fs-4 ">Salary Details (Employers)</p>
+                    <p class="text-center fs-4 "><b>Salary Details (Employers)</b></p>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">
-                        Academic Year
-                    </label>
-                    <input type="year" name="year" value="<?php echo $A_YEAR?>" class="form-control" disabled>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
+                    <input type="year" name="year" value="<?php echo $A_YEAR?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Department ID
-                    </label>
-                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" disabled>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
+                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>                
                 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Program Name
-                    </label>
-                    <select name="p_name" class="form-control">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Program Name</b></label>
+                    <select name="p_name" class="form-control" style="margin-top: 0;">
                     <?php 
                     $sql = "SELECT * FROM `program_master`";
                     $result = mysqli_query($conn, $sql);
@@ -101,55 +95,42 @@ if(isset($_GET['action'])) {
                 </div>     
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Roll No
-                    </label>
-                    <input type="number" name="Roll_No" class="form-control" placeholder="Enter the Roll No" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Roll No</b></label>
+                    <input type="number" name="Roll_No" class="form-control" placeholder="Enter the Roll No" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Student Name
-                    </label>
-                    <input type="text" name="Student_Name" class="form-control" placeholder="Enter the Student Name" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Student Name</b></label>
+                    <input type="text" name="Student_Name" class="form-control" placeholder="Enter the Student Name" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Company Name
-                    </label>
-                    <input type="text" name="Company_Name" class="form-control" placeholder="Enter the Comapny Name" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Company Name</b></label>
+                    <input type="text" name="Company_Name" class="form-control" placeholder="Enter the Comapny Name" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Designation 
-                    </label>
-                    <input type="text" name="Designation" class="form-control" placeholder="Enter your Designation"required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Designation</b></label>
+                    <input type="text" name="Designation" class="form-control" placeholder="Enter your Designation" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Salary
-                    </label>
-                    <input type="number" name="Salary" class="form-control" placeholder="Enter your Salary" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Salary</b></label>
+                    <input type="number" name="Salary" class="form-control" placeholder="Enter your Salary" style="margin-top: 0;" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Job Order(Optional)
-                    </label>
-                    <input type="text" name="Job_Order" class="form-control" placeholder="Enter your Job Order Url">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Job Order(Optional)</b></label>
+                    <input type="text" name="Job_Order" class="form-control" placeholder="Enter your Job Order Url" style="margin-top: 0;">
                 </div>
 
-                
                 <input type="submit" class="submit" value="Submit" name="submit" onclick="return Validate()">
             </form>
         </div>
         
     <!-- Show Entered Data -->
     <div class="row my-5" >
-    <h3 class="fs-4 mb-3 text-center" id="msg">You Have Entered the Following Data</h3>
+    <h3 class="fs-4 mb-3 text-center" id="msg"><b>You Have Entered the Following Data</b></h3>
         <div class="col ">
             <div class="overflow-auto">
                 <table class="table bg-white rounded shadow-sm  table-hover ">
@@ -163,6 +144,7 @@ if(isset($_GET['action'])) {
                             <th scope="col">Designation</th>
                             <th scope="col">Salary</th>
                             <th scope="col">Job Order(Optional)</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -180,6 +162,7 @@ if(isset($_GET['action'])) {
                     <td><?php echo $row['DESIGNATION']?></td>
                     <td><?php echo $row['SALARY']?></td>
                     <td><?php echo $row['JOB_ORDER']?></td>
+                    <td><a class="dbutton" href="EditSalaryDetails.php?action=edit&ID=<?php echo $row['ID']?>">Edit</a></td>
                     <td><a class="dbutton" href="SalaryDetails.php?action=delete&ID=<?php echo $row['ID']?>">Delete</a></td>
                 </tr>
                 <?php

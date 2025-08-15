@@ -44,73 +44,62 @@ if(isset($_GET['action'])) {
     }
 }
 ?>
-        <div class="div">
+        <div class="div" >
             <form class="fw-bold" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" autocomplete="off">
                 <div class="mb-3">
-                    <p class="text-center fs-4 ">PHD Details </p>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        Academic Year
-                    </label>
-                    <input type="text" name="year" value="<?php echo $A_YEAR?>" class="form-control" disabled>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        Department ID
-                    </label>
-                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" disabled>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        No. of Male Students (FULL TIME)
-                    </label>
-                    <input type="text" name="Male_Students_FT" class="form-control" placeholder="Enter Count" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        No. of Female Students (FULL TIME)
-                    </label>
-                    <input type="text" name="Female_Students_FT" class="form-control" placeholder="Enter Count" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        No. of Male Students (PART TIME)
-                    </label>
-                    <input type="text" name="Male_Students_PT" class="form-control" placeholder="Enter Count" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        No. of Female Students (PART TIME)
-                    </label>
-                    <input type="text" name="Male_Students_PT" class="form-control" placeholder="Enter Count" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        No. of Male Students awarded Ph.D. (FULL TIME)
-                    </label>
-                    <input type="text" name="Male_Students_AWD_FT" class="form-control" placeholder="Enter Count" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        No. of Female Students awarded Ph.D. (FULL TIME)
-                    </label>
-                    <input type="text" name="Female_Students_AWD_FT" class="form-control" placeholder="Enter Count" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        No. of Male Students awarded Ph.D. (PART TIME)
-                    </label>
-                    <input type="text" name="Male_Students_AWD_PT" class="form-control" placeholder="Enter Count" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        No. of Female Students awarded Ph.D. (PART TIME)
-                    </label>
-                    <input type="text" name="Female_Students_AWD_PT" class="form-control" placeholder="Enter Count" required>
+                    <p class="text-center fs-4 "><b>PHD Details</b> </p>
                 </div>
 
-                
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
+                    <input type="text" name="year" value="<?php echo $A_YEAR?>" class="form-control" style="margin-top: 0;" disabled>
+                </div>
+
+                <div class="mb-3" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
+                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" style="margin-top: 0;" disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>No. of Male Students (FULL TIME)</b></label>
+                    <input type="text" name="Male_Students_FT" class="form-control" placeholder="Enter Count" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>No. of Female Students (FULL TIME)</b></label>
+                    <input type="text" name="Female_Students_FT" class="form-control" placeholder="Enter Count" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>No. of Male Students (PART TIME)</b></label>
+                    <input type="text" name="Male_Students_PT" class="form-control" placeholder="Enter Count" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>No. of Female Students (PART TIME)</b></label>
+                    <input type="text" name="Male_Students_PT" class="form-control" placeholder="Enter Count" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3" >
+                    <label class="form-label" style="margin-bottom: 6px;"><b>No. of Male Students awarded Ph.D. (FULL TIME)</b></label>
+                    <input type="text" name="Male_Students_AWD_FT" class="form-control" placeholder="Enter Count" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>No. of Female Students awarded Ph.D. (FULL TIME)</b></label>
+                    <input type="text" name="Female_Students_AWD_FT" class="form-control" placeholder="Enter Count" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>No. of Male Students awarded Ph.D. (PART TIME)</b></label>
+                    <input type="text" name="Male_Students_AWD_PT" class="form-control" placeholder="Enter Count" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>No. of Female Students awarded Ph.D. (PART TIME)</b></label>
+                    <input type="text" name="Female_Students_AWD_PT" class="form-control" placeholder="Enter Count" style="margin-top: 0;" required>
+                </div>
+
                 <input type="submit" class="submit" value="Submit" name="submit" onclick="return Validate()">
             </form>
         </div>
@@ -132,6 +121,7 @@ if(isset($_GET['action'])) {
                             <th scope="col">No. of Female Students awarded Ph.D. (FULL TIME)</th>
                             <th scope="col">No. of Male Students awarded Ph.D. (PART TIME)</th>
                             <th scope="col"> No. of Female Students awarded Ph.D. (PART TIME)</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -150,6 +140,7 @@ if(isset($_GET['action'])) {
                     <td><?php echo $row['PHD_AWARDED_FEMALE_STUDENTS_FULL']?></td>
                     <td><?php echo $row['PHD_AWARDED_MALE_STUDENTS_PART']?></td>
                     <td><?php echo $row['PHD_AWARDED_FEMALE_STUDENTS_PART']?></td>
+                    <td><a class="dbutton" href="EditPhd.php?action=edit&ID=<?php echo $row['ID']?>">Edit</a></td>
                     <td><a class="dbutton" href="phd.php?action=delete&ID=<?php echo $row['ID']?>">Delete</a></td>
                 </tr>
                 <?php

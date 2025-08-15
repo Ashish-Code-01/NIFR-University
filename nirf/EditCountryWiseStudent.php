@@ -3,8 +3,29 @@ include 'config.php';
 require "header.php";
 
 $dept = $_SESSION['dept_id'];
-    
-if (isset($_POST['submit'])) {
+
+if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['ID'])) {
+    $id = $_GET['ID'];
+
+    // Fetch existing data for the record being edited
+    $query = "SELECT * FROM country_wise_student WHERE ID = '$id' AND DEPT_ID = '$dept'";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+
+        $program_name = $row['PROGRAM_NAME'];
+        $country_code = $row['COUNTRY_CODE'];
+        $num_students = $row['NO_OF_STUDENT_COUNTRY'];
+    } else {
+        echo "<script>alert('Invalid Record ID.');</script>";
+        echo '<script>window.location.href = "countryWiseStudent.php";</script>';
+        exit;
+    }
+}
+
+if (isset($_POST['update'])) {
+    $id = $_POST['id'];
     $p_name = $_POST['p_name'];
 
     // Fetch PROGRAM_CODE from program_master based on PROGRAM_NAME
@@ -16,94 +37,83 @@ if (isset($_POST['submit'])) {
 
         if ($row) {
             $p_code = $row['PROGRAM_CODE'];
-
-            // Your other variables...
             $countryCode = $_POST['countryCode'];
             $Country_wise_student = $_POST['Country_wise_student'];
 
-            // Your INSERT query
-            $query = "INSERT INTO `country_wise_student`(`A_YEAR`, `DEPT_ID`, `PROGRAM_CODE`, `PROGRAM_NAME`, `COUNTRY_CODE`, `NO_OF_STUDENT_COUNTRY`) 
-            VALUES ('$A_YEAR', '$dept', '$p_code', '$p_name', '$countryCode', '$Country_wise_student')
-            ON DUPLICATE KEY UPDATE
-            PROGRAM_CODE = VALUES(PROGRAM_CODE),
-            PROGRAM_NAME = VALUES(PROGRAM_NAME),
-            NO_OF_STUDENT_COUNTRY = VALUES(NO_OF_STUDENT_COUNTRY)";
+            // Update query
+            $update_query = "UPDATE `country_wise_student` SET 
+                `PROGRAM_CODE` = '$p_code', 
+                `PROGRAM_NAME` = '$p_name', 
+                `COUNTRY_CODE` = '$countryCode', 
+                `NO_OF_STUDENT_COUNTRY` = '$Country_wise_student' 
+                WHERE `ID` = '$id' AND `DEPT_ID` = '$dept'";
 
-            if (mysqli_query($conn, $query)) {
-                echo "<script>alert('Data Entered.')</script>";
+            if (mysqli_query($conn, $update_query)) {
+                echo "<script>alert('Data Updated Successfully.')</script>";
                 echo '<script>window.location.href = "countryWiseStudent.php";</script>';
             } else {
-                echo "<script>alert('Woops! There was an error (Contact Admin if it continues).')</script>";
+                echo "<script>alert('Error updating record. Please try again later.')</script>";
             }
         } else {
-            echo "No matching PROGRAM_CODE found for PROGRAM_NAME: $p_name";
+            echo "<script>alert('Invalid Program Name.')</script>";
         }
     } else {
-        echo "Error executing query: " . mysqli_error($conn);
-    }
-}
-
-
-if(isset($_GET['action'])) {
-    $action=$_GET['action'];
-    if($action == 'delete') {
-        $id=$_GET['ID'];
-        $sql = mysqli_query($conn, "delete from country_wise_student where ID = '$id'");
-        echo '<script>window.location.href = "countryWiseStudent.php";</script>';
+        echo "<script>alert('Error fetching Program Code.')</script>";
     }
 }
 ?>
-        <div class="div">
-            <form class="fw-bold" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" autocomplete="off">
-                <div class="mb-3">
-                    <p class="text-center fs-4 "><b>Country Wise Student</b></p>
-                </div>
 
-				<div class="mb-3">
-                    <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
-                    <input type="year" name="year" value="<?php echo $A_YEAR?>" class="form-control" style="margin-top: 0;" disabled>
-                </div>
+<div class="div">
+    <form class="fw-bold" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
 
-                <div class="mb-3">
-                    <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
-                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" style="margin-top: 0;" disabled>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label" style="margin-bottom: 6px;"><b>Program Name</b></label>
-                    <select name="p_name" class="form-control" style="margin-top: 0;">
-                    <?php 
-                    $sql = "SELECT * FROM `program_master`";
-                    $result = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        if ($row['PROGRAM_NAME'] == $p_name) {
-                            echo '<option selected value="' . $row['PROGRAM_NAME'] . '">' . $row['PROGRAM_NAME'] . '</option>';
-                        } else {
-                            echo '<option value="' . $row['PROGRAM_NAME'] . '">' . $row['PROGRAM_NAME'] . '</option>';
-                        }
+        <div class="mb-3">
+            <p class="text-center fs-4 "><b>Edit Country Wise Student</b></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
+            <input type="text" name="year" value="<?php echo $A_YEAR; ?>" class="form-control" style="margin-top: 0;" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
+            <input type="text" name="dpt_id" value="<?php echo $dept; ?>" class="form-control" style="margin-top: 0;" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="margin-bottom: 6px;"><b>Program Name</b></label>
+            <select name="p_name" class="form-control" style="margin-top: 0;">
+                <?php 
+                $sql = "SELECT * FROM `program_master`";
+                $result = mysqli_query($conn, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                    if ($row['PROGRAM_NAME'] == $program_name) {
+                        echo '<option selected value="' . $row['PROGRAM_NAME'] . '">' . $row['PROGRAM_NAME'] . '</option>';
+                    } else {
+                        echo '<option value="' . $row['PROGRAM_NAME'] . '">' . $row['PROGRAM_NAME'] . '</option>';
                     }
-                    ?>
-                    </select>
-                </div>     
+                }
+                ?>
+            </select>
+        </div>
 
-                <div class="mb-3">
-                    <label class="form-label" style="margin-bottom: 6px;"><b>Select element containing all counties and country codes</b>
-					</label style="margin-top: 0; margin-bottom: 6px;">
-                        <!-- country codes (ISO 3166) and Dial codes. -->
-                        <select name="countryCode" class="form-control" id="">
-						<option data-countryCode="IN" value="91">India (+91)</option>
-	                        <option data-countryCode="GB" value="44" Selected>Norway (+47)</option>
-	                        <option data-countryCode="US" value="1">UK (+44)</option>  
-	                    <optgroup label="Other countries">
-                            <option data-countryCode="AD" value="376">Andorra (+376)</option>
-                            <option data-countryCode="DZ" value="213">Algeria (+213)</option>
-                            <option data-countryCode="AI" value="1264">Anguilla (+1264)</option>
-                            <option data-countryCode="AO" value="244">Angola (+244)</option>
-		                    <option data-countryCode="AG" value="1268">Antigua &amp; Barbuda (+1268)</option>
-		                    <option data-countryCode="AR" value="54">Argentina (+54)</option>
-		                    <option data-countryCode="AM" value="374">Armenia (+374)</option>
-		                    <option data-countryCode="AW" value="297">Aruba (+297)</option>
-		                    <option data-countryCode="AU" value="61">Australia (+61)</option>
+        <div class="mb-3">
+            <label class="form-label" style="margin-bottom: 6px;"><b>Country Code</b></label>
+            <select name="countryCode" class="form-control">
+                <option value="91" <?php echo ($country_code == '91') ? 'selected' : ''; ?>>India (+91)</option>
+                <option value="44" <?php echo ($country_code == '44') ? 'selected' : ''; ?>>Norway (+47)</option>
+                <option value="1" <?php echo ($country_code == '1') ? 'selected' : ''; ?>>UK (+44)</option>
+                <optgroup label="Other countries">
+                    <option data-countryCode="AD" value="376">Andorra (+376)</option>
+                    <option data-countryCode="DZ" value="213">Algeria (+213)</option>
+                    <option data-countryCode="AI" value="1264">Anguilla (+1264)</option>
+                    <option data-countryCode="AO" value="244">Angola (+244)</option>
+		            <option data-countryCode="AG" value="1268">Antigua &amp; Barbuda (+1268)</option>
+		            <option data-countryCode="AR" value="54">Argentina (+54)</option>
+		            <option data-countryCode="AM" value="374">Armenia (+374)</option>
+		            <option data-countryCode="AW" value="297">Aruba (+297)</option>
+		            <option data-countryCode="AU" value="61">Australia (+61)</option>
 		                    <option data-countryCode="AT" value="43">Austria (+43)</option>
 		                    <option data-countryCode="AZ" value="994">Azerbaijan (+994)</option>
 		                    <option data-countryCode="BS" value="1242">Bahamas (+1242)</option>
@@ -308,57 +318,20 @@ if(isset($_GET['action'])) {
 		                    <option data-countryCode="YE" value="967">Yemen (South)(+967)</option>
 		                    <option data-countryCode="ZM" value="260">Zambia (+260)</option>
 		                    <option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
-	                </optgroup>
-                </select>
-				</div>
-				
-                <div class="mb-3">
-                    <label class="form-label" style="margin-bottom: 6px;"><b>Number of student country wise</b></label>
-                    <input type= number name="Country_wise_student" class="form-control" placeholder="Enter number of country wise student" style="margin-top: 0;" required>
-                </div>
-  
-                <input type="submit" class="submit" value="Submit" name="submit" onclick="return Validate()">
-            </form>
+
+                </optgroup>
+            </select>
         </div>
-		
-        
-    <!-- Show Entered Data -->
-    <div class="row my-5" >
-    <h3 class="fs-4 mb-3 text-center" id="msg"><b>You Have Entered the Following Data</b></h3>
-        <div class="col ">
-            <div class="overflow-auto">
-                <table class="table bg-white rounded shadow-sm  table-hover ">
-                    <thead>
-                        <tr>
-                            <th scope="col">Academic Year</th>
-							<th scope="col">Program Name</th>
-                            <th scope="col">Country Code</th>
-                            <th scope="col">Number of student country wise</th>
-                            <th scope="col">Edit</th>
-							<th scope="col">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php 
-                $Record = mysqli_query($conn, "SELECT * FROM country_wise_student WHERE DEPT_ID = $dept");
-                while ($row = mysqli_fetch_array($Record)) {
-                    ?>
-                <tr>
-                    <td><?php echo $row['A_YEAR']?></td>
-					<td><?php echo $row['PROGRAM_NAME']?></td>
-					<td><?php echo $row['COUNTRY_CODE']?></td>
-					<td><?php echo $row['NO_OF_STUDENT_COUNTRY']?></td>
-					<td><a class="dbutton" href="EditCountryWiseStudent.php?action=edit&ID=<?php echo $row['ID']?>">Edit</a></td>
-                    <td><a class="dbutton" href="countryWiseStudent.php?action=delete&ID=<?php echo $row['ID']?>">Delete</a></td>
-                </tr>
-                <?php
-                    }
-                    ?>                            
-                </tbody>
-            </table>
+
+        <div class="mb-3">
+            <label class="form-label" style="margin-bottom: 6px;"><b>Number of Students Country Wise</b></label>
+            <input type="number" name="Country_wise_student" class="form-control" placeholder="Enter number of students" value="<?php echo $num_students; ?>" style="margin-top: 0;" required>
         </div>
-        </div>
-    </div>
+
+        <input type="submit" class="submit" value="Update" name="update">
+    </form>
+</div>
+
 <?php
 require "footer.php";
 ?>

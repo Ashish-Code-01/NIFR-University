@@ -152,7 +152,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
 <div class="div">
 
     <body>
-        <div class="container my-5">
+        <div class=" my-5">
             <h1 class="mb-4 text-center">Faculty Output, Research & Professional Activities</h1>
             <p class="text-muted text-center mb-5">Please fill out the details for the last academic year.</p>
 
@@ -364,81 +364,142 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete') {
                 </fieldset>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Submit Details</button>
                 </div>
             </form>
         </div>
 
-        <!-- Show Entered Data -->
-        <div class="row my-5">
-            <h3 class="fs-4 mb-3 text-center" id="msg"><b>Faculty Output Data Entered</b></h3>
-            <div class="col">
-                <div class="overflow-auto">
-                    <table class="table table-bordered table-striped bg-white rounded shadow-sm">
-                        <thead class="table-light font-weight-bold">
-                            <tr>
-                                <th scope="col">Faculty PhD (Permanent)</th>
-                                <th scope="col">Faculty PhD (Ad-hoc)</th>
-                                <th scope="col">PhDs Awarded</th>
-                                <th scope="col">Awards/Fellowships</th>
-                                <th scope="col">Recognitions</th>
-                                <th scope="col">Infra Funding (Lakhs)</th>
-                                <th scope="col">Startups Registered</th>
-                                <th scope="col">Startups Incubated</th>
-                                <th scope="col">Patents Filed</th>
-                                <th scope="col">Patents Published</th>
-                                <th scope="col">Patents Granted</th>
-                                <th scope="col">Copyrights Granted</th>
-                                <th scope="col">Designs Granted</th>
-                                <th scope="col">ToT Count</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $result = mysqli_query($conn, "SELECT * FROM faculty_output");
-                            while ($row = mysqli_fetch_array($result)) {
-                                echo "<tr>";
-                                echo "<td>{$row['permanent_faculty_phd']}</td>";
-                                echo "<td>{$row['adhoc_faculty_phd']}</td>";
-                                echo "<td>{$row['phd_awarded_count']}</td>";
-                                echo "<td>";
-                                $awards = json_decode($row['awards'], true);
-                                if ($awards && is_array($awards)) {
-                                    foreach ($awards as $award) {
-                                        echo htmlspecialchars($award) . "<br>";
-                                    }
-                                }
-                                echo "</td>";
-                                echo "<td>";
-                                $recognitions = json_decode($row['recognitions'], true);
-                                if ($recognitions && is_array($recognitions)) {
-                                    foreach ($recognitions as $rec) {
-                                        echo htmlspecialchars($rec) . "<br>";
-                                    }
-                                }
-                                echo "</td>";
-                                echo "<td>{$row['infra_funding']}</td>";
-                                echo "<td>{$row['startups_registered']}</td>";
-                                echo "<td>{$row['startups_incubated']}</td>";
-                                echo "<td>{$row['patents_filed']}</td>";
-                                echo "<td>{$row['patents_published']}</td>";
-                                echo "<td>{$row['patents_granted']}</td>";
-                                echo "<td>{$row['copyrights_granted']}</td>";
-                                echo "<td>{$row['designs_granted']}</td>";
-                                echo "<td>{$row['tot_count']}</td>";
-                                echo "<td>
-                            <a class='btn btn-sm btn-warning' href='FacultyOutput.php?action=edit&ID={$row['id']}'>Edit</a>
-                            <a class='btn btn-sm btn-danger' href='FacultyOutput.php?action=delete&ID={$row['id']}' onclick=\"return confirm('Delete this record?');\">Delete</a>
-                        </td>";
-                                echo "</tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+
+        <style>
+            body {
+                background: #f6f8fa;
+            }
+
+            .container {
+                background: #fff;
+                border-radius: 1rem;
+                box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.07);
+                padding: 2.5rem 2rem;
+                margin-bottom: 2rem;
+            }
+
+            fieldset {
+                border: 1px solid #e3e6ea !important;
+                border-radius: 0.75rem;
+                padding: 2rem 1.5rem 1.5rem 1.5rem !important;
+                margin-bottom: 2.5rem !important;
+                background: #fafdff;
+                box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.03);
+            }
+
+            legend {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #2b3a55;
+                width: auto;
+                padding: 0 0.5rem;
+                border-bottom: none;
+            }
+
+            label.form-label {
+                font-weight: 500;
+                color: #2b3a55;
+            }
+
+            input[type="number"],
+            input[type="text"],
+            input[type="date"],
+            input[type="month"],
+            input[type="url"],
+            textarea,
+            select {
+                border-radius: 0.5rem !important;
+                border: 1px solid #cfd8dc !important;
+                background: #f7fafc !important;
+                font-size: 1rem;
+            }
+
+            input:focus,
+            textarea:focus,
+            select:focus {
+                border-color: #1976d2 !important;
+                box-shadow: 0 0 0 0.15rem #1976d233 !important;
+                background: #fff !important;
+            }
+
+            .dynamic-entry {
+                background: #f3f7fa;
+                border: 1px solid #e3e6ea;
+                border-radius: 0.75rem;
+                margin-bottom: 1.5rem;
+                padding: 1.5rem 1rem 1rem 1rem;
+                position: relative;
+                box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.03);
+                transition: box-shadow 0.2s;
+            }
+
+            .dynamic-entry:hover {
+                box-shadow: 0 0.5rem 1rem rgba(25, 118, 210, 0.07);
+            }
+
+            .dynamic-entry h5 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #1976d2;
+                margin-bottom: 1rem;
+            }
+
+            .remove-btn,
+            .dynamic-entry .btn-danger {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                z-index: 2;
+            }
+
+            .btn-outline-primary,
+            .btn-primary {
+                border-radius: 0.5rem;
+                font-weight: 500;
+                letter-spacing: 0.02em;
+                padding: 0.5rem 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .btn-outline-primary {
+                border-width: 2px;
+            }
+
+            .btn-danger {
+                border-radius: 0.5rem;
+                font-size: 0.95rem;
+                padding: 0.35rem 1.1rem;
+            }
+
+            .char-counter {
+                font-size: 0.92em;
+                color: #888;
+                margin-top: 0.25rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.25rem;
+            }
+
+            @media (max-width: 767px) {
+                .container {
+                    padding: 1rem 0.5rem;
+                }
+
+                fieldset {
+                    padding: 1rem 0.5rem 0.5rem 0.5rem !important;
+                }
+
+                .dynamic-entry {
+                    padding: 1rem 0.5rem 0.5rem 0.5rem;
+                }
+            }
+        </style>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>

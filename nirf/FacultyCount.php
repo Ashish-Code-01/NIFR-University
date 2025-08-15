@@ -4,7 +4,6 @@ require "header.php";
 
 $dept = $_SESSION['dept_id'];
 
-
 if (isset($_POST['submit'])){
 
     $male=$_POST['male_faculty'];
@@ -38,40 +37,32 @@ if(isset($_GET['action'])) {
         <div class="div">
             <form class="fw-bold" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="mb-3">
-                    <p class="text-center fs-4 ">Faculty Count</p>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        Academic Year
-                    </label>
-                    <input type="text" name="year1" value="<?php echo $A_YEAR?>" class="form-control" disabled>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                       Department ID
-                    </label>
-                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" disabled>
+                    <p class="text-center fs-4 "><b>Faculty Count</b></p>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Total number of<b> MALE </b> International Faculty 
-                    </label>
-                    <input type="number" name="male_faculty" class="form-control" placeholder="Enter the number of registered international faculty members (male)" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
+                    <input type="text" name="year1" value="<?php echo $A_YEAR?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Total number of<b> Female </b> International Faculty 
-                    </label>
-                    <input type="number" name="female_faculty" class="form-control" placeholder="Enter the number of registered international faculty members (female)" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
+                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Total number of<b> Other </b> International Faculty
-                    </label>
-                    <input type="Text" name="other" class="form-control" placeholder="Enter the number of registered international faculty members (Other)">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Total number of <span style="color: red;">MALE</span> International Faculty </b></label>
+                    <input type="number" name="male_faculty" class="form-control" placeholder="Enter the number of registered international faculty members (male)" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Total number of <span style="color: red;">FEMALE</span> International Faculty</b></label>
+                    <input type="number" name="female_faculty" class="form-control" placeholder="Enter the number of registered international faculty members (female)" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Total number of <span style="color: red;">OTHER</span> International Faculty</b></label>
+                    <input type="text" name="other" class="form-control" placeholder="Enter the number of registered international faculty members (Other)" style="margin-top: 0;">
                 </div>
 
                 <input type="submit" class="submit" value="Submit" name="submit" onclick="return Validate()">
@@ -80,7 +71,7 @@ if(isset($_GET['action'])) {
 
     <!-- Show Entered Data -->
     <div class="row my-5" >
-    <h3 class="fs-4 mb-3 text-center" id="msg">You Have Entered the Following Data</h3>
+    <h3 class="fs-4 mb-3 text-center" id="msg"><b>You Have Entered the Following Data</b></h3>
         <div class="col ">
             <div class="overflow-auto">
                 <table class="table bg-white rounded shadow-sm  table-hover ">
@@ -90,6 +81,7 @@ if(isset($_GET['action'])) {
                             <th scope="col">Total number of<b> MALE </b> International Faculty</th>
                             <th scope="col">Total number of<b> Female </b> International Faculty </th>
                             <th scope="col">Total number of<b> Other </b> International Faculty</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -103,6 +95,7 @@ if(isset($_GET['action'])) {
                     <td><?php echo $row['NUM_OF_INTERN_MALE_FACULTY']?></td>
                     <td><?php echo $row['NUM_OF_INTERN_FEMALE_FACULTY']?></td>
                     <td><?php echo $row['NUM_OF_INTERN_OTHER_FACULTY']?></td>
+                    <td><a class="dbutton" href="EditFacultyCount.php?action=edit&ID=<?php echo $row['ID']?>">Edit</a></td>
                     <td><a class="dbutton" href="FacultyCount.php?action=delete&ID=<?php echo $row['ID']?>">Delete</a></td>
                 </tr>
                 <?php

@@ -51,80 +51,67 @@ if(isset($_GET['action'])) {
         <div class="div">
             <form class="fw-bold" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="mb-3">
-                    <p class="text-center fs-4 ">Academic Peers</p>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                       Academic Year
-                    </label>
-                    <input type="text" name="year" value="<?php echo $A_YEAR?>" class="form-control" disabled>
-                </div>
-                <div class="mb-3">
-                        <label class="form-label">
-                            Department ID
-                        </label>
-                        <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" disabled>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        Title (Salutation)
-                    </label>
-                    <input type="text" name="Title" class="form-control" placeholder="Enter Title [ Dr. (Mr.), Dr. (Mrs.) ]" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">
-                        First Name
-                    </label>
-                    <input type="text" name="First_Name" pattern="[A-Za-z]+" class="form-control" placeholder="Enter First Name" required>
+                    <p class="text-center fs-4 "><b>Academic Peers</b></p>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">
-                        Last Name
-                    </label>
-                    <input type="text" name="Last_Name" pattern="[A-Za-z]+" class="form-control" placeholder="Enter Last Name" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Academic Year</b></label>
+                    <input type="text" name="year" value="<?php echo $A_YEAR?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">
-                        Job Title
-                    </label>
-                    <input type="text" name="Job_Title" class="form-control" placeholder="Enter Job Title" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Department ID</b></label>
+                    <input type="text" name="dpt_id" value="<?php echo $dept?>" class="form-control" style="margin-top: 0;" disabled>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">
-                        Institution
-                    </label>
-                    <input type="text" name="Institution" class="form-control" placeholder="Enter Institution" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Title (Salutation)</b></label>
+                    <input type="text" name="Title" class="form-control" placeholder="Enter Title [ Dr. (Mr.), Dr. (Mrs.) ]" style="margin-top: 0;" required>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">
-                        Department
-                    </label>
-                    <input type="text" name="Department" class="form-control" placeholder="Enter Department" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>First Name</b></label>
+                    <input type="text" name="First_Name" pattern="[A-Za-z]+" class="form-control" placeholder="Enter First Name" style="margin-top: 0;" required>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">
-                        Location
-                    </label>
-                    <input type="text" name="Location" class="form-control" placeholder="Enter Location" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Last Name</b></label>
+                    <input type="text" name="Last_Name" pattern="[A-Za-z]+" class="form-control" placeholder="Enter Last Name" style="margin-top: 0;" required>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">
-                        Email
-                    </label>
-                    <input type="email" name="Email" class="form-control" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" placeholder="Enter Email" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Job Title</b></label>
+                    <input type="text" name="Job_Title" class="form-control" placeholder="Enter Job Title" style="margin-top: 0;" required>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">
-                        Phone
-                    </label>
-                    <input type="number" name="Phone" class="form-control" placeholder="Enter Phone" required>
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Institution</b></label>
+                    <input type="text" name="Institution" class="form-control" placeholder="Enter Institution" style="margin-top: 0;" required>
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">
-                        Type
-                    </label>
-                    <select name="Type" class="form-control">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Department</b></label>
+                    <input type="text" name="Department" class="form-control" placeholder="Enter Department" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Location</b></label>
+                    <input type="text" name="Location" class="form-control" placeholder="Enter Location" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Email</b></label>
+                    <input type="email" name="Email" class="form-control" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" placeholder="Enter Email" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Phone</b></label>
+                    <input type="number" name="Phone" class="form-control" placeholder="Enter Phone" style="margin-top: 0;" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" style="margin-bottom: 6px;"><b>Type</b></label>
+                    <select name="Type" class="form-control" style="margin-top: 0;">
                         <option value="INDIAN">INDIAN</option>
                         <option value="FOREIGN">FOREIGN</option>
                     </select>
@@ -134,9 +121,9 @@ if(isset($_GET['action'])) {
             </form>
         </div>
 
-         <!-- Show Entered Data -->
+        <!-- Show Entered Data -->
     <div class="row my-5" >
-    <h3 class="fs-4 mb-3 text-center" id="msg">You Have Entered the Following Data</h3>
+    <h3 class="fs-4 mb-3 text-center" id="msg"><b>You Have Entered the Following Data</b></h3>
         <div class="col ">
             <div class="overflow-auto">
                 <table class="table bg-white rounded shadow-sm  table-hover ">
@@ -153,6 +140,7 @@ if(isset($_GET['action'])) {
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
                     </thead>
@@ -173,6 +161,7 @@ if(isset($_GET['action'])) {
                     <td><?php echo $row['EMAIL_ID']?></td>
                     <td><?php echo $row['PHONE']?></td>
                     <td><?php echo $row['TY_PE']?></td>
+                    <td><a class="dbutton" href="EditAcademicPeers.php?action=edit&ID=<?php echo $row['ID']?>">Edit</a></td>
                     <td><a class="dbutton" href="AcademicPeers.php?action=delete&ID=<?php echo $row['ID']?>">Delete</a></td>
                 </tr>
                 <?php
