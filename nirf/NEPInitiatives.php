@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calculate_marks'])) {
     ];
 
     // Optional: Save results to DB
-    $query = "INSERT INTO `NEPMarks`
-(`nep_count`, `ped_count`, `assess_count`, `moocs`, `econtent`, `nep_score`, `ped_score`, `assess_score`, `mooc_score`, `econtent_score`, `result_days`, `result_score`, `total_marks`)
+    $query = "INSERT INTO NEPMarks
+(nep_count, ped_count, assess_count, moocs, econtent, nep_score, ped_score, assess_score, mooc_score, econtent_score, result_days, result_score, total_marks)
 VALUES (
     '$nep_count',
     '$ped_count',
@@ -100,32 +100,33 @@ ON DUPLICATE KEY UPDATE
                     <form method="post">
                         <!-- NEP Initiatives -->
                         <div class="mb-4">
-                            <label class="form-label fw-bold mb-2 fs-5">1. NEP Initiatives and Professional Activities adopted by the department (Max. marks 30)</label>
+                            <label class="form-label fw-bold mb-2 fs-5">1. NEP Initiatives and Professional Activities
+                                adopted by the department (Max. marks 30)</label>
                             <div class="row">
                                 <?php
                                 $nep_items = [
-                                    "Multidisciplinary Curriculum",
-                                    "Research Projects at PG/UG Honours",
-                                    "Subject-specific Skills Training",
-                                    "Open Electives",
-                                    "Value and Life Skills Education",
+                                    "Multidisciplinary Curriculum/Major-Minor combinations for the UG Programme with CO-PO, PEOs (LOCF with flexible curricular structures)",
+                                    "Research Projects and Publication Output at PG Programme/ Fourth Year UG -honours with Research",
+                                    "Subject-specific Skills and Hands-on-Training Courses",
+                                    "Open Electives from other faculty",
+                                    "Value and Life Skills Education including Curriculum on Gender Equity, Indian Constitution, Environmental Education, Universal Human Values, Industry 4.0, etc.",
                                     "Generic and Subject-Specific IKS",
-                                    "100% Adoption of ABC Credit Transfer",
-                                    "Community Engagement / Field Projects",
+                                    "100 % Adoption of Assignment, Accumulation, Storage, and Transfer of Credits in ABC",
+                                    "Community Engagement/ Field Projects/ Social Entrepreneurship and any specific Output thereof",
                                     "Joint Degree Programme",
                                     "Dual and Integrated Degree Programme",
                                     "Twinning Degree Programme",
-                                    "Bharatiya Bhasha Sanvardhan Activities",
-                                    "Entrepreneurship & Extension Activities",
-                                    "OJT / Internship / IPT",
-                                    "Apprenticeship Embedded Degree",
-                                    "Multiple Entry-Multiple Exit",
-                                    "Professor/Associate of Practice",
-                                    "Involvement of Artists & Professionals",
-                                    "Guru-Shishya Parampara",
-                                    "NBA Accreditation",
-                                    "Compliance with Regulatory Bodies",
-                                    "Any other Innovative NEP Initiative"
+                                    "Activities related to Bharatiya Bhasha Sanvardhan- encouragement for teaching in Indian and local language mediums, Textbooks, and content in Indian languages",
+                                    "Entrepreneurship, Cocurricular, and Extension Activities as part of the Curriculum",
+                                    "OJT/ Internship/ IPT ",
+                                    "Apprenticeship Embedded Degree Programme ",
+                                    "Multiple Entry-Multiple Exit (ME-ME)",
+                                    "Professor/ Associate or Assistant Professor of Practice 18. Involvement of Artists and Field Professionals in Applied/ Visual/ Performing/ Fine Art Education",
+                                    "Accommodation for Guru-Shishya Parampara and traditional learning (For Sanskrit University)",
+                                    "NBA accreditation of Professional Programmes- 100% or partial, Accreditation for 6 or 3 years",
+                                    "Compliance of Regulations/ Guidelines/ Standards/ Frameworks/Laws of Regulatory Bodies- PCI/ CoA/ BCI/ NCTE/ AICTE/ UGC/ Distance Education Bureau etc",
+                                    "Any other Innovative NEP Initiative/ Professional Activity"
+
                                 ];
                                 foreach ($nep_items as $i => $label) {
                                     echo '<div class="col-md-6" ><div class="form-check mb-3">';
@@ -146,28 +147,29 @@ ON DUPLICATE KEY UPDATE
                                 <?php
                                 $ped_items = [
                                     "Blended Learning",
-                                    "Research-based Learning",
-                                    "Problem-based Learning",
-                                    "Project-based Learning",
-                                    "Situational Learning",
-                                    "Experiential Teaching Strategies",
-                                    "Skill-based Learning",
+                                    "Research-based Learning /Teaching",
+                                    "Problem-based Learning /Teaching",
+                                    "Project-based Learning /Teaching",
+                                    "Situational Learning (Action Research Project)",
+                                    "Experiential /Practical Teaching Strategies",
+                                    "Skill-based teaching/ Learning",
                                     "Exceptional Teaching Strategies",
                                     "Designing Learning Experiences",
-                                    "Use of Technology",
-                                    "Use of AI Tools",
-                                    "Special Education Tools",
-                                    "Remedial Coaching",
-                                    "Learner-Centric Activities",
+                                    "Use of Technology in Teaching and Learning (LMS, Interactive Smart Board, Flipped Classroom, etc)",
+                                    "Use of AI Tools for Personalised Learning Models and Inclusive Practices that cater to diverse learning styles and backgrounds",
+                                    "Use of Specific Tools for Special Education/ Physically Challenged Learners",
+                                    "Remedial Coaching Pedagogy",
+                                    "Scholarly Learner-Centric Activities Beyond Classroom",
                                     "Finishing School Pedagogy",
-                                    "Field/Industrial Visits",
-                                    "Case Studies for Management",
+                                    "Field/ Industrial visits, Study Tours",
+                                    "Case Studies for Management Program",
                                     "Moot Court in Law",
-                                    "Multisensory Learning",
+                                    "Multisensory learning",
                                     "Gamification of Learning",
                                     "Art Integrated Learning",
-                                    "Language-neutral Content",
-                                    "Any other Innovative Approach"
+                                    "Language-neutral content and delivery to enable students to learn in their native language with the use of real-time translation services",
+                                    "Any other Innovative Pedagogical Approach"
+
                                 ];
                                 foreach ($ped_items as $i => $label) {
                                     echo '<div class="col-md-6"><div class="form-check mb-3">';
@@ -187,24 +189,25 @@ ON DUPLICATE KEY UPDATE
                                 <?php
                                 $assess_items = [
                                     "Assessment Rubrics",
-                                    "Classroom Assessment Techniques",
-                                    "Solving Exercises/Tutorials",
-                                    "Problem-Solving Ability Assessment",
-                                    "Seminar/Presentations/Viva",
-                                    "Group Tasks/Discussions",
-                                    "Weekly Quiz Tests",
-                                    "Open Book Exams",
+                                    "Class Room Assessment Techniques",
+                                    "Solving Exercises/ Tutorials",
+                                    "Assessment of Problem-solving ability, Computational thinking",
+                                    "Seminar/ Presentations, Viva-voce/ Oral Examination",
+                                    "Group Tasks/Group Discussions/ Fishbowl Technique",
+                                    "Weekly/ Interim Quiz Tests",
+                                    "Open book examination",
                                     "Surprise Tests",
-                                    "Portfolios/E-Portfolios",
+                                    "Portfolios and / E-Portfolios",
                                     "Classroom Response Systems",
-                                    "Skills Demonstration",
-                                    "Assessment of Field Projects",
+                                    "Assessment of different skill levels including demonstration of Skills/ performance Demonstrations",
+                                    "Assessment of Field Projects/ OJT/Internship",
                                     "Learning Outcome Attainment",
                                     "Competency Assessment",
-                                    "Question Bank Development",
-                                    "AI/ML Powered Assessments",
+                                    "Development of Question Bank",
+                                    "Assessments powered by AIML for evaluation of skills and knowledge",
                                     "Digitization of Assessment Process",
-                                    "Other Assessment Approaches"
+                                    "Any other Assessment activity/ approach"
+
                                 ];
                                 foreach ($assess_items as $i => $label) {
                                     echo '<div class="col-md-6"><div class="form-check mb-3" style="margin-bottom: 0;">';
